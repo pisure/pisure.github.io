@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About @psure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <section class="profile-section">
+            <div class="profile-card">
+                <div class="profile-img-container">
+                    <img src="img/Asta.jpg" alt="Aaron Espinoza" class="profile-img default-img">
+                    <img src="img/foto.jpg" alt="Aaron Espinoza" class="profile-img hover-img">
+                </div>
+                <h1 class="greeting">Hola, soy Aaron Espinoza</h1>
+                <div class="typing-text" id="typing-text"></div>
+                
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/ron.es4/" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/aaron-espinoza-393856346/" target="_blank" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://discord.com/users/pisuree" target="_blank" class="social-icon">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://github.com/pisure" target="_blank" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <h2 class="section-title">Mis Proyectos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="img/espectrometro.png" alt="Proyecto 1" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Espectrometro Web</h3>
+                        <p class="project-desc">Aplicación web para mostrar graficamente los datos de un espectrometro de luz.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="img/Pyro.png" alt="Proyecto 2" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Pyo Games</h3>
+                        <p class="project-desc">Network basada en recrear series de famosos streamers, con modalidades variadas.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="img/portafolio.png" alt="Proyecto 3" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Portfolio Interactivo</h3>
+                        <p class="project-desc">Sitio web interactivo con animaciones avanzadas y experiencia de usuario mejorada.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-btn-container">
+                <a href="https://discord.com/users/pisuree" target="_blank" class="contact-btn">Contáctame en Discord</a>
+            </div>
+        </section>
+    </div>
+
+    <div class="music-controller">
+        <div class="music-title">sure tracks</div>
+        <div class="music-controls">
+            <i class="volume-down">🔉</i>
+            <input type="range" min="0" max="4" step="0.1" value="0.5" class="volume-slider" id="volume-control">
+            <i class="volume-up">🔊</i>
+        </div>
+        <button class="play-btn" id="play-btn">▶</button>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="audio/Maria Becerra - High (Video Oficial).mp3" type="audio/mp3">
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
