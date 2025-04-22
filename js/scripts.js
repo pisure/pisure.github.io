@@ -1,5 +1,4 @@
 // Configuración de Particles.js
-// Configuración mejorada de Particles.js
 document.addEventListener('DOMContentLoaded', function() {
     particlesJS("particles-js", {
         "particles": {
@@ -128,11 +127,11 @@ function typeEffect() {
 
     if (!isDeleting && charIndex === currentText.length) {
         isDeleting = true;
-        typingSpeed = 1500; // Pausa al final del texto
+        typingSpeed = 1500;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         textIndex = (textIndex + 1) % texts.length;
-        typingSpeed = 500; // Pausa antes de empezar nuevo texto
+        typingSpeed = 500;
     }
     
     setTimeout(typeEffect, typingSpeed);
