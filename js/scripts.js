@@ -212,21 +212,3 @@ document.addEventListener('DOMContentLoaded', () => {
     
     setTimeout(fadeInOnScroll, 100);
 });
-
-// Contador de views
-document.addEventListener('DOMContentLoaded', function() {
-    function updateViewCount() {
-        let views = localStorage.getItem('pageViews');
-        views = views ? parseInt(views) + 1 : 1;
-        localStorage.setItem('pageViews', views);
-        document.getElementById('view-count').textContent = views.toLocaleString();
-        
-        const counter = document.querySelector('.global-view-counter');
-        counter.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-            counter.style.transform = 'scale(1)';
-        }, 300);
-    }
-    
-    updateViewCount();
-});
