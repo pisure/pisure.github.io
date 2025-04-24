@@ -459,7 +459,3 @@ body {
     color: #b18bd4;
 }
 
-/* Elimina el contador anterior del profile-card si ya no lo quieres */
-.view-counter {
-    display: none;
-}
