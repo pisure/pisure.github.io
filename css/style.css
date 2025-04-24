@@ -415,4 +415,17 @@ body {
     justify-content: center;
 }
 
+/* Estilos para el icono de C++ */
+.cplusplus-icon svg {
+    width: 56px;
+    height: 56px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.cplusplus-icon svg:hover {
+    transform: scale(1.2) translateY(-5px);
+    opacity: 0.9;
+}
+
 /* asdas*/
