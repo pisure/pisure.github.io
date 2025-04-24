@@ -213,4 +213,26 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(fadeInOnScroll, 100);
 });
 
-// asd
+// En tu scripts.js, mantén el mismo código del contador
+document.addEventListener('DOMContentLoaded', function() {
+    // Contador de vistas (mismo código que antes)
+    function updateViewCount() {
+        let views = localStorage.getItem('pageViews');
+        views = views ? parseInt(views) + 1 : 1;
+        localStorage.setItem('pageViews', views);
+        document.getElementById('view-count').textContent = views.toLocaleString();
+        
+        // Animación opcional
+        const counter = document.querySelector('.global-view-counter');
+        counter.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            counter.style.transform = 'scale(1)';
+        }, 300);
+    }
+    
+    updateViewCount();
+
+    // ... (resto de tu código existente) ...
+});
+
+// pipipi

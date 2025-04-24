@@ -428,4 +428,40 @@ body {
     opacity: 0.9;
 }
 
-/* as*/
+/* Contador global de vistas */
+.global-view-counter {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background-color: rgba(142, 68, 173, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.global-view-counter:hover {
+    background-color: rgba(142, 68, 173, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.global-view-counter i {
+    font-size: 0.8rem;
+    color: #b18bd4;
+}
+
+/* Elimina el contador anterior del profile-card si ya no lo quieres */
+.view-counter {
+    display: none;
+}
+
+/* pipi  waza*/
