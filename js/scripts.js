@@ -178,7 +178,7 @@ projectCards.forEach(card => {
     });
 });
 
-// Animación al hacer scroll
+// Animacion al hacer scroll
 function fadeInOnScroll() {
     const elements = document.querySelectorAll('.project-card, .section-title');
     
@@ -213,16 +213,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(fadeInOnScroll, 100);
 });
 
-// En tu scripts.js, mantén el mismo código del contador
+// Contador de views
 document.addEventListener('DOMContentLoaded', function() {
-    // Contador de vistas (mismo código que antes)
     function updateViewCount() {
         let views = localStorage.getItem('pageViews');
         views = views ? parseInt(views) + 1 : 1;
         localStorage.setItem('pageViews', views);
         document.getElementById('view-count').textContent = views.toLocaleString();
         
-        // Animación opcional
         const counter = document.querySelector('.global-view-counter');
         counter.style.transform = 'scale(1.1)';
         setTimeout(() => {
@@ -231,8 +229,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     updateViewCount();
-
-    // ... (resto de tu código existente) ...
 });
-
-// pipipi
