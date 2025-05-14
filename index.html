@@ -6,6 +6,10 @@
     <title>About @psure</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23ffffff' d='M96 208h320v96H96z'/></svg>">
+    <meta name="description" content="Portfolio de Aaron Espinoza - Desarrollador FullStack especializado en React y Node.js">
+    <meta name="keywords" content="desarrollador web, portfolio, programador, React, JavaScript, C++">
+    <link rel="canonical" href="https://psure.fun">
 </head>
 <body>
     <div id="particles-js"></div>
@@ -19,10 +23,7 @@
                 </div>
                 <h1 class="greeting">Hola, soy Aaron Espinoza</h1>
                 <div class="typing-text" id="typing-text"></div>
-                
-                <a href="docs/portafolio.pdf" download="Portafolio_Aaron_Espinoza.pdf" class="portfolio-btn">
-                    <i class="fas fa-download"></i> Descargar Portafolio
-                </a>
+        
                 
                 <div class="social-icons">
                     <a href="https://www.instagram.com/ron.es4/" target="_blank" class="social-icon">
@@ -45,10 +46,10 @@
             <h2 class="section-title">Mis Proyectos</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <img src="img/espectrometro.png" alt="Proyecto 1" class="project-img">
+                    <img src="img/webespectrometro.png" alt="Proyecto 1" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">Espectrometro Web</h3>
-                        <p class="project-desc">Aplicación web para mostrar gráficamente los datos de un espectrómetro de luz.</p>
+                        <h3 class="project-title">Espectrometro Web | VIS </h3>
+                        <p class="project-desc">Aplicación web para mostrar gráficamente los datos de un espectrómetro de luz segun los datos ingresador mediante por bluetooth</p>
                         <div class="project-tech">
                             <span class="tech-tag">React</span>
                             <span class="tech-tag">Node.js</span>
@@ -57,7 +58,7 @@
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/Pyro.png" alt="Proyecto 2" class="project-img">
+                    <img src="img/banner.jpg" alt="Proyecto 2" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Pyro Games</h3>
                         <p class="project-desc">Network basada en recrear series de famosos streamers, con modalidades variadas.</p>
@@ -65,6 +66,11 @@
                             <span class="tech-tag">Java</span>
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
+                            <div style="margin-top: 10px;">
+                            <a href="https://discord.gg/gGcTNwrUB8" target="_blank" class="portfolio-btn" style="background: #5865F2;">
+                                <center><i class="fab fa-discord"></i> Discord</center>
+                            </a>
+                </div>
                         </div>
                     </div>
                 </div>
@@ -113,18 +119,23 @@
     </div>
 
     <div class="music-controller">
-        <div class="music-title">pisure tracks</div>
-        <div class="music-controls">
-            <i class="volume-down">🔉</i>
-            <input type="range" min="0" max="4" step="0.1" value="0.5" class="volume-slider" id="volume-control">
-            <i class="volume-up">🔊</i>
-        </div>
-        <button class="play-btn" id="play-btn">▶</button>
-    </div>
+  <div class="music-title" id="track-title">pisure tracks</div>
+  <div class="music-controls">
+    <button class="play-btn" id="prev-btn">⏮</button>
+    <button class="play-btn" id="play-btn">▶</button>
+    <button class="play-btn" id="next-btn">⏭</button>
+  </div>
+  <div class="music-controls">
+    <i class="volume-down">🔉</i>
+    <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider" id="volume-control">
+    <i class="volume-up">🔊</i>
+  </div>
+</div>
 
-    <audio id="background-music" loop>
-        <source src="audio/Maria Becerra - High (Video Oficial).mp3" type="audio/mp3">
-    </audio>
+<audio id="background-music">
+  <source id="audio-source" src="audio/Maria Becerra - High (Video Oficial).mp3" type="audio/mp3">
+  <source id="audio-source" src="audio/www.jerseyboyssa.co.za - Maroon 5 - This Love (320 KBps).m4a" type="audio/mp3">
+</audio>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/scripts.js"></script>
