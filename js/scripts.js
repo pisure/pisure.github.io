@@ -213,7 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(fadeInOnScroll, 100);
 });
 
-// Lista de canciones
 const tracks = [
   { title: "High", src: "audio/Maria Becerra - High (Video Oficial).mp3" },
   { title: "This Love", src: "audio/www.jerseyboyssa.co.za - Maroon 5 - This Love (320 KBps).m4a" }
@@ -226,7 +225,6 @@ const trackTitle = document.getElementById('track-title');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 
-// Cambiar canción
 function loadTrack(index) {
   currentTrackIndex = (index + tracks.length) % tracks.length;
   audioSource.src = tracks[currentTrackIndex].src;
@@ -237,10 +235,8 @@ function loadTrack(index) {
   }
 }
 
-// Botones prev/next
 prevBtn.addEventListener('click', () => loadTrack(currentTrackIndex - 1));
 nextBtn.addEventListener('click', () => loadTrack(currentTrackIndex + 1));
 
-// Iniciar primer track
 loadTrack(currentTrackIndex);
 
