@@ -214,8 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const tracks = [
-  { title: "High", src: "audio/Maria Becerra - High (Video Oficial).mp3" },
-  { title: "This Love", src: "audio/www.jerseyboyssa.co.za - Maroon 5 - This Love (320 KBps).m4a" }
+  { title: "Me hace daño verte", src: "audio/ME HACE DAÑO VERTE.mp3" },
+  { title: "This Love", src: "audio/www.jerseyboyssa.co.za - Maroon 5 - This Love (320 KBps).m4a" },
+  { title: "High", src: "audio/Maria Becerra - High (Video Oficial).mp3" }
 ];
 
 let currentTrackIndex = 0;
