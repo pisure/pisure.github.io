@@ -159,25 +159,13 @@
         </section>
     </div>
 
-    <div class="music-controller">
-  <div class="music-title" id="track-title">pisure tracks</div>
-  <div class="music-controls">
-    <button class="play-btn" id="prev-btn">⏮</button>
-    <button class="play-btn" id="play-btn">▶</button>
-    <button class="play-btn" id="next-btn">⏭</button>
-  </div>
-  <div class="music-controls">
-    <i class="volume-down">🔉</i>
-    <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider" id="volume-control">
-    <i class="volume-up">🔊</i>
-  </div>
-</div>
-
-<audio id="background-music">
-  <source id="audio-source" src="audio/ME HACE DAÑO VERTE.mp3" type="audio/mp3">
-  <source id="audio-source" src="audio/www.jerseyboyssa.co.za - Maroon 5 - This Love (320 KBps).m4a" type="audio/mp3">
-  <source id="audio-source" src="audio/Maria Becerra - High (Video Oficial).mp3" type="audio/mp3">
-</audio>
+        <div class="music-controller">
+            <div class="music-title" id="track-title">pisure tracks</div>
+            <div class="spotify-embed">
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/21urBIcCt4QXKDq4jshN4e?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            
+        </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/scripts.js"></script>

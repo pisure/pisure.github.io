@@ -402,6 +402,66 @@ body {
     }
 }
 
+/* Spotify embed styling: compact, positioned in bottom-right and responsive */
+.spotify-embed {
+    width: 340px; /* desktop width of the embed container */
+    max-width: 90vw; /* allow shrink on smaller screens */
+}
+
+.spotify-embed iframe[data-testid="embed-iframe"] {
+    width: 100% !important; /* respect container width */
+    height: 80px !important; /* compact height */
+    border-radius: 12px;
+    display: block;
+    transition: height 0.25s ease, box-shadow 0.25s ease;
+}
+
+.music-controller {
+    padding: 0.6rem; /* slightly smaller padding for a compact widget */
+}
+
+/* Ensure the music controller itself doesn't expand full width */
+.music-controller {
+    width: auto;
+    max-width: 360px; /* keep controller compact */
+    overflow: hidden;
+}
+
+/* Hide the long note by default to keep widget compact */
+.music-note {
+    display: none;
+}
+
+/* On hover, expand the iframe height and reveal the note for accessibility */
+.music-controller:hover .spotify-embed iframe[data-testid="embed-iframe"] {
+    height: 352px !important; /* full embed height on hover to show controls */
+}
+
+.music-controller:hover .music-note {
+    display: block;
+    margin-top: 0.5rem;
+    color: #bfbfbf;
+    font-size: 0.75rem;
+    max-width: 340px;
+}
+
+@media (max-width: 480px) {
+    .spotify-embed {
+        width: 220px;
+    }
+
+    .spotify-embed iframe[data-testid="embed-iframe"] {
+        height: 64px !important;
+    }
+
+    .music-controller {
+        right: 0.6rem;
+        bottom: 0.6rem;
+        padding: 0.4rem;
+        border-radius: 12px;
+    }
+}
+
 .contact-section {
     display: flex;
     flex-direction: column;
