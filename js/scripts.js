@@ -140,27 +140,87 @@ function typeEffect() {
 // Iniciar efecto de escritura al cargar la página
 setTimeout(typeEffect, 1000);
 
+// Rapid font cycler for the greeting name: swaps font-family quickly with a tiny pop
+function initFontCycler(){
+    const el = document.getElementById('name-rotator');
+    if(!el) return;
+    // lots of font-family stacks (fallbacks included)
+    const fonts = [
+        'Permanent Marker, cursive',
+        'Rock Salt, cursive',
+        'Bangers, cursive',
+        'Monoton, cursive',
+        'Black Ops One, sans-serif',
+        'Shadows Into Light, cursive',
+        'Caveat, cursive',
+        'Chewy, cursive',
+        'Special Elite, monospace',
+        'Poppins, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+        'Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+        '"Roboto Slab", Georgia, serif',
+        '"Playfair Display", Georgia, serif',
+        '"Courier Prime", Courier, monospace',
+        'Lato, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        'Raleway, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        'Oswald, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        'Merriweather, Georgia, serif',
+        '"PT Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        '"Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        'Nunito, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        '"Indie Flower", cursive',
+        'Anton, sans-serif',
+        '"Abril Fatface", serif',
+        '"Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        'Ubuntu, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        '"Josefin Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        'Quicksand, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        'Play, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
+        'Oxygen, system-ui, -apple-system, "Segoe UI", Roboto, Arial'
+    ];
+
+    let idx = 0;
+    // apply initial style
+    el.style.fontFamily = fonts[0];
+    el.style.color = '#8e44ad';
+
+    function swapFont(){
+        idx = (idx + 1) % fonts.length;
+        // tiny pop animation for emphasis
+        el.classList.add('name-pop');
+        setTimeout(()=> el.classList.remove('name-pop'), 100);
+        // switch font quickly
+        el.style.fontFamily = fonts[idx];
+    }
+
+    // change font every 350ms for a slightly slower (more readable) effect
+    setInterval(swapFont, 350);
+}
+
+document.addEventListener('DOMContentLoaded', initFontCycler);
+
 // Controlador de música
 const audio = document.getElementById('background-music');
 const playBtn = document.getElementById('play-btn');
 const volumeControl = document.getElementById('volume-control');
 let isPlaying = false;
 
-playBtn.addEventListener('click', togglePlay);
-volumeControl.addEventListener('input', adjustVolume);
+if (playBtn) playBtn.addEventListener('click', togglePlay);
+if (volumeControl) volumeControl.addEventListener('input', adjustVolume);
 
 function togglePlay() {
+    if (!audio) return;
     if (isPlaying) {
         audio.pause();
-        playBtn.innerHTML = '▶';
+        if (playBtn) playBtn.innerHTML = '▶';
     } else {
         audio.play();
-        playBtn.innerHTML = '❚❚';
+        if (playBtn) playBtn.innerHTML = '❚❚';
     }
     isPlaying = !isPlaying;
 }
 
 function adjustVolume() {
+    if (!audio || !volumeControl) return;
     audio.volume = volumeControl.value;
 }
 
@@ -214,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const tracks = [
-  { title: "Me hace daño verte", src: "audio/ME HACE DAÑO VERTE.mp3" },
+    { title: "psure tracks", src: "audio/ME HACE DAÑO VERTE.mp3" },
   { title: "This Love", src: "audio/www.jerseyboyssa.co.za - Maroon 5 - This Love (320 KBps).m4a" },
   { title: "High", src: "audio/Maria Becerra - High (Video Oficial).mp3" }
 ];
@@ -228,16 +288,126 @@ const nextBtn = document.getElementById('next-btn');
 
 function loadTrack(index) {
   currentTrackIndex = (index + tracks.length) % tracks.length;
-  audioSource.src = tracks[currentTrackIndex].src;
-  audio.load();
-  trackTitle.textContent = tracks[currentTrackIndex].title;
-  if (isPlaying) {
-    audio.play();
-  }
+    if (audioSource) audioSource.src = tracks[currentTrackIndex].src;
+    if (audio) audio.load();
+    if (trackTitle) trackTitle.textContent = tracks[currentTrackIndex].title;
+    if (isPlaying && audio) {
+        audio.play();
+    }
 }
 
-prevBtn.addEventListener('click', () => loadTrack(currentTrackIndex - 1));
-nextBtn.addEventListener('click', () => loadTrack(currentTrackIndex + 1));
+if (prevBtn) prevBtn.addEventListener('click', () => loadTrack(currentTrackIndex - 1));
+if (nextBtn) nextBtn.addEventListener('click', () => loadTrack(currentTrackIndex + 1));
 
 loadTrack(currentTrackIndex);
+
+// Simple image enlarge modal with blur background
+function initImageModal(){
+    const modal = document.getElementById('img-modal');
+    const modalImg = document.querySelector('.img-modal-img');
+    const closeBtn = document.querySelector('.img-modal-close');
+    const prevBtn = document.querySelector('.img-modal-prev');
+    const nextBtn = document.querySelector('.img-modal-next');
+    const titleEl = document.querySelector('.img-modal-title');
+    const descEl = document.querySelector('.img-modal-desc');
+    const thumbsContainer = document.querySelector('.img-modal-thumbs');
+    if(!modal || !modalImg) return;
+
+    let gallery = [];
+    let current = 0;
+    let currentMeta = { title: '', desc: '' };
+
+    function openGallery(images, meta, startIndex){
+        gallery = images.slice();
+        currentMeta = meta || { title: '', desc: '' };
+        current = (typeof startIndex === 'number') ? startIndex : 0;
+        renderThumbs();
+        showSlide(current);
+        if(titleEl) titleEl.textContent = currentMeta.title || '';
+        if(descEl) descEl.textContent = currentMeta.desc || '';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        modalImg.src = '';
+        document.body.style.overflow = '';
+        thumbsContainer.innerHTML = '';
+        if(titleEl) titleEl.textContent = '';
+        if(descEl) descEl.textContent = '';
+    }
+
+    function showSlide(index){
+        if(!gallery || gallery.length === 0) return;
+        current = (index + gallery.length) % gallery.length;
+        // Fade effect
+        modalImg.style.opacity = 0;
+        const nextSrc = gallery[current];
+        // Preload image to avoid flicker
+        const img = new Image();
+        img.onload = () => {
+            modalImg.src = nextSrc;
+            setTimeout(()=>{ modalImg.style.opacity = 1; }, 30);
+            updateActiveThumb();
+        };
+        img.src = nextSrc;
+    }
+
+    function renderThumbs(){
+        if(!thumbsContainer) return;
+        thumbsContainer.innerHTML = '';
+        gallery.forEach((src, idx) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            const im = document.createElement('img');
+            im.src = src;
+            im.alt = `thumb-${idx}`;
+            btn.appendChild(im);
+            btn.addEventListener('click', ()=> showSlide(idx));
+            thumbsContainer.appendChild(btn);
+        });
+        updateActiveThumb();
+    }
+
+    function updateActiveThumb(){
+        if(!thumbsContainer) return;
+        Array.from(thumbsContainer.children).forEach((btn, idx)=>{
+            if(idx === current) btn.classList.add('active'); else btn.classList.remove('active');
+        });
+        if(titleEl) titleEl.textContent = currentMeta.title || '';
+        if(descEl) descEl.textContent = currentMeta.desc || '';
+    }
+
+    if(closeBtn) closeBtn.addEventListener('click', closeModal);
+    if(prevBtn) prevBtn.addEventListener('click', ()=> showSlide(current - 1));
+    if(nextBtn) nextBtn.addEventListener('click', ()=> showSlide(current + 1));
+
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape') return closeModal();
+        if(e.key === 'ArrowLeft') return showSlide(current - 1);
+        if(e.key === 'ArrowRight') return showSlide(current + 1);
+    });
+
+    // Attach to images
+    document.querySelectorAll('img.project-img[data-enlarge="true"]').forEach(imgEl=>{
+        imgEl.style.cursor = 'zoom-in';
+        imgEl.addEventListener('click', ()=>{
+            const imagesAttr = imgEl.getAttribute('data-images');
+            const images = imagesAttr ? imagesAttr.split(',').map(s=>s.trim()).filter(Boolean) : [imgEl.src];
+            const title = imgEl.getAttribute('data-title') || '';
+            const desc = imgEl.getAttribute('data-desc') || '';
+            // If the clicked src exists in list, start at that index
+            let startIndex = images.indexOf(imgEl.src);
+            if(startIndex === -1) startIndex = 0;
+            openGallery(images, { title, desc }, startIndex);
+        });
+    });
+}
+
+// Ensure modal init runs after DOM is fully parsed so modal element exists
+document.addEventListener('DOMContentLoaded', initImageModal);
 

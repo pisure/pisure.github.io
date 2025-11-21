@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About @psure</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Roboto+Slab:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Courier+Prime:wght@400&family=Lato:wght@300;400;700&family=Raleway:wght@300;400;700&family=Oswald:wght@300;400&family=Merriweather:wght@300;400;700&family=PT+Sans:wght@400;700&family=Source+Sans+3:wght@300;400;700&family=Nunito:wght@300;400;700&family=Indie+Flower&family=Anton&family=Abril+Fatface&family=Fira+Sans:wght@300;400;700&family=Ubuntu:wght@300;400;700&family=Josefin+Sans:wght@300;400&family=Quicksand:wght@300;400;700&family=Play:wght@400&family=Oxygen:wght@300;400;700&family=Permanent+Marker&family=Rock+Salt&family=Bangers&family=Monoton&family=Black+Ops+One&family=Shadows+Into+Light&family=Caveat&family=Chewy&family=Special+Elite&family=Kalam&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23ffffff' d='M96 208h320v96H96z'/></svg>">
     <meta name="keywords" content="desarrollador web, portfolio, programador, React, JavaScript, C++">
@@ -20,7 +21,7 @@
                     <img src="img/foto1.jpg" alt="Aaron Espinoza" class="profile-img default-img">
                     <img src="img/foto.jpg" alt="Aaron Espinoza" class="profile-img hover-img">
                 </div>
-                <h1 class="greeting">Hola, soy Aaron</h1>
+                <h1 class="greeting">¡Hola, soy <span id="name-rotator">Aaron</span>!</h1>
                 <div class="typing-text" id="typing-text"></div>
         
                 
@@ -45,13 +46,18 @@
             <h2 class="section-title">Mis Proyectos</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <img src="img/webespectrometro.png" alt="Proyecto 1" class="project-img">
+                    <img src="img/espectrometronew.png" alt="Proyecto 1" class="project-img" data-enlarge="true"
+                        data-images="img/espectrometronew.png,img/espectrometro1.jpeg,img/espectrometro2.png,img/espectrometro3.jpeg"
+                        data-title="Espectrometro Web | VIS"
+                        data-desc="Aplicación web para mostrar gráficamente los datos de un espectrómetro de luz mediante Bluetooth.">
                     <div class="project-info">
-                        <h3 class="project-title">Espectrometro Web | VIS </h3>
+                        <h3 class="project-title"><span class="status-dot status-active" title="Online" aria-hidden="true"></span>Espectrometro Web - 2025</h3>
                         <p class="project-desc">Aplicación web para mostrar gráficamente los datos de un espectrómetro de luz segun los datos ingresador mediante por bluetooth</p>
                         <div class="project-tech">
                             <span class="tech-tag">React</span>
                             <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">MySQL</span>
                             <span class="tech-tag">PHP</span>
                             <span class="tech-tag">CSS3</span>
                             <span class="tech-tag">MongoDB</span>
@@ -59,28 +65,32 @@
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/banner.jpg" alt="Proyecto 2" class="project-img">
+                    <img src="img/banner.jpg" alt="Proyecto 2" class="project-img" data-enlarge="true"
+                        data-images="img/banner.jpg,img/pyroweb.jpeg,img/dedsafio.png,img/image.png,img/webonesshow.png"
+                        data-title="Pyro Games"
+                        data-desc="Estudio enfocado en minijuegos personalizados y recreacion de series.">
                     <div class="project-info">
-                        <h3 class="project-title">Pyro Games</h3>
-                        <p class="project-desc">Network basada en recrear series de famosos streamers, con modalidades variadas.</p>
+                        <h3 class="project-title"><span class="status-dot status-active" title="Online" aria-hidden="true"></span>Pyro Studio - 2024</h3>
+                        <p class="project-desc">Studio basado en recrear series/eventos de famosos streamers, creado por y para la comunidad.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Java</span>
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
                             <span class="tech-tag">Kotlin</span>
                             <span class="tech-tag">PHP</span>
-                            <div style="margin-top: 10px;">
-                            <a href="https://discord.gg/gGcTNwrUB8" target="_blank" class="portfolio-btn" style="background: #5865F2;">
-                                <center><i class="fab fa-discord"></i> Discord</center>
-                            </a>
-                </div>
                         </div>
+                        <div style="margin-top: 10px;">
+                            <a href="https://discord.gg/gGcTNwrUB8" target="_blank" class="portfolio-btn" style="background: #5865F2;">
+                                <i class="fab fa-discord"></i> Discord
+                            </a>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="project-card">
                     <img src="img/cargando-1.webp" alt="Proyecto 3" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">ViasUPC</h3>
+                        <h3 class="project-title"><span class="status-dot status-inactive" title="Maintenance" aria-hidden="true"></span>ViasUPC- 2025</h3>
                         <p class="project-desc">Website para publicaciones de articulos sobre información relacionado a obras de un equipo de estudiantes de la Universidad Peruana de Ciencas Aplicadas (UPC) - En desarrollo.</p>
                         <div class="project-tech">
                             <span class="tech-tag">PHP</span>
@@ -91,9 +101,12 @@
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/portafolio.png" alt="Proyecto 4" class="project-img">
+                    <img src="img/portafolio2.jpeg" alt="Proyecto 4" class="project-img" data-enlarge="true"
+                        data-images="img/portafolio2.jpeg,img/portafolio1.jpeg"
+                        data-title="Portfolio Interactivo"
+                        data-desc="Sitio web interactivo con animaciones y buena UX.">
                     <div class="project-info">
-                        <h3 class="project-title">Portfolio Interactivo</h3>
+                        <h3 class="project-title"><span class="status-dot status-active" title="Online" aria-hidden="true"></span>Portfolio Interactivo - 2024</h3>
                         <p class="project-desc">Sitio web interactivo con animaciones avanzadas y experiencia de usuario mejorada.</p>
                         <div class="project-tech">
                             <span class="tech-tag">HTML5</span>
@@ -103,9 +116,12 @@
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/bliss.png" alt="Proyecto 5" class="project-img">
+                    <img src="img/bliss.png" alt="Proyecto 5" class="project-img" data-enlarge="true"
+                        data-images="img/bliss.png,img/bliss1.png,img/bliss2.png,img/bliss3.png"
+                        data-title="BLISS"
+                        data-desc="Plataforma para puntuación y reservas en salones de belleza.">
                     <div class="project-info">
-                        <h3 class="project-title">BLISS</h3>
+                        <h3 class="project-title"><span class="status-dot status-archived" title="Offline" aria-hidden="true"></span>BLISS - 2023</h3>
                         <p class="project-desc">Sitio web multifuncional hecho para realizar puntaje a salones de belleza, donde se puede adquirir productos de belleza de tus salones preferidos y donde tambien podras realizar reservas y mucho mas.</p>
                         <div class="project-tech">
                             <span class="tech-tag">HTML5</span>
@@ -118,7 +134,7 @@
                 <div class="project-card">
                     <img src="img/cargando-1.webp" alt="Proyecto 5" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">¿?</h3>
+                        <h3 class="project-title"><span class="status-dot status-inactive" title="Maintenance" aria-hidden="true"></span>¿?</h3>
                         <p class="project-desc">Aplicación web para la visualización de series/peliculas desde cualquier tipo de dispositivo - En desarrollo.</p>
                         <div class="project-tech">
                             <span class="tech-tag">React</span>
@@ -141,6 +157,8 @@
                 <i class="fab fa-react" title="React" style="color: #61DAFB;"></i>
                 <i class="fab fa-github" title="GitHub" style="color: #FFFFFF;"></i>
                 <i class="fab fa-bootstrap" title="BootStrap" style="color: #6f42c1;"></i>
+                <i class="fas fa-leaf" title="MongoDB" style="color: #47A248;"></i>
+                <i class="fas fa-database" title="MySQL" style="color: #00758F;"></i>
                 <span class="cplusplus-icon" title="C++">
                     <svg viewBox="0 0 128 128" width="56" height="56">
                         <path fill="#00599C" d="M115.4 30.7l-48.3-27.8c-.8-.5-1.9-.7-3.1-.7-1.2 0-2.3.3-3.1.7l-48 27.9c-1.7 1-2.9 3.5-2.9 5.4v55.7c0 1.1.2 2.4 1 3.5l106.8-62c-.6-1.2-1.5-2.1-2.4-2.7z"></path>
@@ -167,7 +185,27 @@
             
         </div>
 
+        <!-- Image modal / carousel -->
+        <div id="img-modal" class="img-modal" aria-hidden="true">
+            <div class="img-modal-inner" role="dialog" aria-modal="true">
+                <button class="img-modal-close" aria-label="Cerrar">×</button>
+                <div class="img-modal-content">
+                    <button class="img-modal-prev" aria-label="Anterior">‹</button>
+                    <div class="img-modal-stage">
+                        <img class="img-modal-img" src="" alt="Imagen ampliada">
+                        <div class="img-modal-info">
+                            <h3 class="img-modal-title"></h3>
+                            <p class="img-modal-desc"></p>
+                        </div>
+                    </div>
+                    <button class="img-modal-next" aria-label="Siguiente">›</button>
+                </div>
+                <div class="img-modal-thumbs" role="navigation"></div>
+            </div>
+        </div>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/scripts.js"></script>
 </body>
 </html>
+
