@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About @psure</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Roboto+Slab:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Courier+Prime:wght@400&family=Lato:wght@300;400;700&family=Raleway:wght@300;400;700&family=Oswald:wght@300;400&family=Merriweather:wght@300;400;700&family=PT+Sans:wght@400;700&family=Source+Sans+3:wght@300;400;700&family=Nunito:wght@300;400;700&family=Indie+Flower&family=Anton&family=Abril+Fatface&family=Fira+Sans:wght@300;400;700&family=Ubuntu:wght@300;400;700&family=Josefin+Sans:wght@300;400&family=Quicksand:wght@300;400;700&family=Play:wght@400&family=Oxygen:wght@300;400;700&family=Permanent+Marker&family=Rock+Salt&family=Bangers&family=Monoton&family=Black+Ops+One&family=Shadows+Into+Light&family=Caveat&family=Chewy&family=Special+Elite&family=Kalam&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23ffffff' d='M96 208h320v96H96z'/></svg>">
     <meta name="keywords" content="desarrollador web, portfolio, programador, React, JavaScript, C++">
@@ -18,10 +17,15 @@
         <section class="profile-section">
             <div class="profile-card">
                 <div class="profile-img-container">
-                    <img src="img/foto1.jpg" alt="Aaron Espinoza" class="profile-img default-img">
+                    <img src="img/golden.jpg" alt="Aaron Espinoza" class="profile-img default-img">
                     <img src="img/foto.jpg" alt="Aaron Espinoza" class="profile-img hover-img">
                 </div>
-                <h1 class="greeting">¡Hola, soy <span id="name-rotator">Aaron</span>!</h1>
+                <h1 class="greeting">¡Hola, soy
+                    <span class="svg-logo" aria-hidden="true">
+                            <svg id="logo-logotype" class="svg-logo" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-labelledby="logoTitle">
+                                <title id="logoTitle">Aaron</title>
+                                <text class="logo-text" x="0" y="45">Aaron</text>
+                            </svg></span>!</h1>
                 <div class="typing-text" id="typing-text"></div>
         
                 
@@ -31,9 +35,6 @@
                     </a>
                     <a href="https://www.linkedin.com/in/aaron-espinoza-393856346/" target="_blank" class="social-icon">
                         <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://discord.com/users/pisuree" target="_blank" class="social-icon">
-                        <i class="fab fa-discord"></i>
                     </a>
                     <a href="https://github.com/pisure" target="_blank" class="social-icon">
                         <i class="fab fa-github"></i>
@@ -65,30 +66,27 @@
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/banner.jpg" alt="Proyecto 2" class="project-img" data-enlarge="true"
-                        data-images="img/banner.jpg,img/pyroweb.jpeg,img/dedsafio.png,img/image.png,img/webonesshow.png"
-                        data-title="Pyro Games"
-                        data-desc="Estudio enfocado en minijuegos personalizados y recreacion de series.">
+                    <img src="img/qrgen.png" alt="Proyecto 2" class="project-img" data-enlarge="true"
+                        data-images="img/qrgen.png"
+                        data-title="QRGen"
+                        data-desc="Website para generar QRS - Open source.">
                     <div class="project-info">
-                        <h3 class="project-title"><span class="status-dot status-active" title="Online" aria-hidden="true"></span>Pyro Studio - 2024</h3>
-                        <p class="project-desc">Studio basado en recrear series/eventos de famosos streamers, creado por y para la comunidad.</p>
+                        <h3 class="project-title"><span class="status-dot status-active" title="Online" aria-hidden="true"></span>QRGen - 2025</h3>
+                        <p class="project-desc">Peoyecto desarrollado para generar QR con varios tipos de metodos mediante escaneos, links, etc.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">Kotlin</span>
                             <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">MYSQL</span>
                         </div>
-                        <div style="margin-top: 10px;">
-                            <a href="https://discord.gg/gGcTNwrUB8" target="_blank" class="portfolio-btn" style="background: #5865F2;">
-                                <i class="fab fa-discord"></i> Discord
-                            </a>
-                        </div>
+                        
                         
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/cargando-1.webp" alt="Proyecto 3" class="project-img">
+                    <img src="img/ViasUPC.png" alt="Proyecto 3" class="project-img" data-enlarge="true"
+                    data-images="img/ViasUPC.png"
+                        data-title="ViasUPC"
+                        data-desc="Website desarrollada para la comunidad de ViasUPC - En desarrollo - BETA">
                     <div class="project-info">
                         <h3 class="project-title"><span class="status-dot status-inactive" title="Maintenance" aria-hidden="true"></span>ViasUPC- 2025</h3>
                         <p class="project-desc">Website para publicaciones de articulos sobre información relacionado a obras de un equipo de estudiantes de la Universidad Peruana de Ciencas Aplicadas (UPC) - En desarrollo.</p>
@@ -185,7 +183,6 @@
             
         </div>
 
-        <!-- Image modal / carousel -->
         <div id="img-modal" class="img-modal" aria-hidden="true">
             <div class="img-modal-inner" role="dialog" aria-modal="true">
                 <button class="img-modal-close" aria-label="Cerrar">×</button>

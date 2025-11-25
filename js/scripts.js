@@ -140,64 +140,6 @@ function typeEffect() {
 // Iniciar efecto de escritura al cargar la página
 setTimeout(typeEffect, 1000);
 
-// Rapid font cycler for the greeting name: swaps font-family quickly with a tiny pop
-function initFontCycler(){
-    const el = document.getElementById('name-rotator');
-    if(!el) return;
-    // lots of font-family stacks (fallbacks included)
-    const fonts = [
-        'Permanent Marker, cursive',
-        'Rock Salt, cursive',
-        'Bangers, cursive',
-        'Monoton, cursive',
-        'Black Ops One, sans-serif',
-        'Shadows Into Light, cursive',
-        'Caveat, cursive',
-        'Chewy, cursive',
-        'Special Elite, monospace',
-        'Poppins, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-        'Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-        '"Roboto Slab", Georgia, serif',
-        '"Playfair Display", Georgia, serif',
-        '"Courier Prime", Courier, monospace',
-        'Lato, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        'Raleway, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        'Oswald, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        'Merriweather, Georgia, serif',
-        '"PT Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        '"Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        'Nunito, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        '"Indie Flower", cursive',
-        'Anton, sans-serif',
-        '"Abril Fatface", serif',
-        '"Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        'Ubuntu, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        '"Josefin Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        'Quicksand, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        'Play, system-ui, -apple-system, "Segoe UI", Roboto, Arial',
-        'Oxygen, system-ui, -apple-system, "Segoe UI", Roboto, Arial'
-    ];
-
-    let idx = 0;
-    // apply initial style
-    el.style.fontFamily = fonts[0];
-    el.style.color = '#8e44ad';
-
-    function swapFont(){
-        idx = (idx + 1) % fonts.length;
-        // tiny pop animation for emphasis
-        el.classList.add('name-pop');
-        setTimeout(()=> el.classList.remove('name-pop'), 100);
-        // switch font quickly
-        el.style.fontFamily = fonts[idx];
-    }
-
-    // change font every 350ms for a slightly slower (more readable) effect
-    setInterval(swapFont, 350);
-}
-
-document.addEventListener('DOMContentLoaded', initFontCycler);
-
 // Controlador de música
 const audio = document.getElementById('background-music');
 const playBtn = document.getElementById('play-btn');
@@ -274,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const tracks = [
-    { title: "psure tracks", src: "audio/ME HACE DAÑO VERTE.mp3" },
+    { title: "Cancion Favorita", src: "audio/ME HACE DAÑO VERTE.mp3" },
   { title: "This Love", src: "audio/www.jerseyboyssa.co.za - Maroon 5 - This Love (320 KBps).m4a" },
   { title: "High", src: "audio/Maria Becerra - High (Video Oficial).mp3" }
 ];
@@ -301,7 +243,6 @@ if (nextBtn) nextBtn.addEventListener('click', () => loadTrack(currentTrackIndex
 
 loadTrack(currentTrackIndex);
 
-// Simple image enlarge modal with blur background
 function initImageModal(){
     const modal = document.getElementById('img-modal');
     const modalImg = document.querySelector('.img-modal-img');
@@ -343,10 +284,9 @@ function initImageModal(){
     function showSlide(index){
         if(!gallery || gallery.length === 0) return;
         current = (index + gallery.length) % gallery.length;
-        // Fade effect
+        // efecto fade
         modalImg.style.opacity = 0;
         const nextSrc = gallery[current];
-        // Preload image to avoid flicker
         const img = new Image();
         img.onload = () => {
             modalImg.src = nextSrc;
@@ -392,7 +332,6 @@ function initImageModal(){
         if(e.key === 'ArrowRight') return showSlide(current + 1);
     });
 
-    // Attach to images
     document.querySelectorAll('img.project-img[data-enlarge="true"]').forEach(imgEl=>{
         imgEl.style.cursor = 'zoom-in';
         imgEl.addEventListener('click', ()=>{
@@ -400,7 +339,6 @@ function initImageModal(){
             const images = imagesAttr ? imagesAttr.split(',').map(s=>s.trim()).filter(Boolean) : [imgEl.src];
             const title = imgEl.getAttribute('data-title') || '';
             const desc = imgEl.getAttribute('data-desc') || '';
-            // If the clicked src exists in list, start at that index
             let startIndex = images.indexOf(imgEl.src);
             if(startIndex === -1) startIndex = 0;
             openGallery(images, { title, desc }, startIndex);
@@ -408,6 +346,16 @@ function initImageModal(){
     });
 }
 
-// Ensure modal init runs after DOM is fully parsed so modal element exists
 document.addEventListener('DOMContentLoaded', initImageModal);
+
+document.addEventListener('DOMContentLoaded', function(){
+    const logoText = document.querySelector('.logo-text');
+    if(!logoText) return;
+    setTimeout(()=>{
+        logoText.classList.add('animate');
+    }, 80);
+    setTimeout(()=>{
+        logoText.classList.add('filled');
+    }, 1400);
+});
 
