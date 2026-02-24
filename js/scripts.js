@@ -1,10 +1,10 @@
 /* ═══════════════════════════════════════════
-   SCRIPTS — PSURE PORTFOLIO v2.0
+   SCRIPTS — PORTFOLIO DE PSURE v2.0
 ═══════════════════════════════════════════ */
 
 'use strict';
 
-/* ─── PARTICLES.JS ─── */
+/* ─── PARTÍCULAS DEL FONDO ─── */
 document.addEventListener('DOMContentLoaded', function () {
     particlesJS("particles-js", {
         particles: {
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-/* ─── NAVBAR — scroll shrink + hamburger ─── */
+/* ─── NAVBAR ─── */
 const navbar = document.getElementById('navbar');
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
@@ -63,7 +63,7 @@ navLinks?.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-/* ─── TYPING EFFECT ─── */
+/* ─── EFECTO DE ESCRITURA (TYPING) ─── */
 const typingTextEl = document.getElementById('typing-text');
 const texts = [
     'Freelancer',
@@ -96,7 +96,7 @@ function typeEffect() {
 
 setTimeout(typeEffect, 900);
 
-/* ─── SCROLL REVEAL (Intersection Observer) ─── */
+/* ─── ANIMACIÓN DE APARICIÓN AL HACER SCROLL ─── */
 function initReveal() {
     const revealEls = document.querySelectorAll('.reveal, .project-card, .tech-item');
 
@@ -123,7 +123,7 @@ function initReveal() {
 
 document.addEventListener('DOMContentLoaded', initReveal);
 
-/* ─── PROJECT ZOOM BTN → triggers modal ─── */
+/* ─── BOTÓN DE ZOOM EN PROYECTO ─── */
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.project-zoom-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-/* ─── SVG LOGO ANIMATION ─── */
+/* ─── ANIMACIÓN DEL LOGO SVG ─── */
 document.addEventListener('DOMContentLoaded', function () {
     const logoText = document.querySelector('.logo-text');
     if (!logoText) return;
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => logoText.classList.add('filled'), 1400);
 });
 
-/* ─── IMAGE MODAL (carousel) ─── */
+/* ─── MODAL DE IMÁGENES (carrusel de proyectos) ─── */
 function initImageModal() {
     const modal = document.getElementById('img-modal');
     const modalImg = document.querySelector('.img-modal-img');
@@ -166,14 +166,14 @@ function initImageModal() {
         currentMeta = meta || {};
         current = typeof startIdx === 'number' ? startIdx : 0;
 
-        // Update project name badge
+        // Actualizo el nombre del proyecto en el badge
         if (projectName) projectName.textContent = currentMeta.title || 'Proyecto';
         if (counterTot) counterTot.textContent = gallery.length;
 
         renderThumbs();
         showSlide(current);
 
-        // Reset animation
+        // Reinicio la animación de entrada
         const shell = modal.querySelector('.img-modal-shell');
         if (shell) { shell.style.animation = 'none'; shell.offsetWidth; shell.style.animation = ''; }
 
@@ -255,7 +255,7 @@ function initImageModal() {
 
 document.addEventListener('DOMContentLoaded', initImageModal);
 
-/* ─── SMOOTH ANCHOR SCROLL ─── */
+/* ─── SCROLL SUAVE AL HACER CLIC EN ENLACES DE ANCLAJE ─── */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const target = document.querySelector(this.getAttribute('href'));
@@ -270,14 +270,51 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-/* ─── MUSIC WIDGET MOBILE TOGGLE ─── */
+/* ─── WIDGET DE MÚSICA — colapsa en móvil + navegación entre tracks ─── */
 (function () {
     const toggleBtn = document.getElementById('music-toggle-btn');
     const musicBody = document.getElementById('music-body');
     const chevron = document.getElementById('music-chevron');
+    const iframe = document.getElementById('spotify-iframe');
+    const trackNum = document.getElementById('music-track-num');
+    const prevBtn = document.getElementById('music-prev');
+    const nextBtn = document.getElementById('music-next');
     if (!toggleBtn || !musicBody) return;
 
-    // Sólo activa en móvil
+    // ── Lista de tracks de Spotify ──
+    // Para agregar más: copia el ID de la URL de Spotify
+    // Ej: https://open.spotify.com/track/[ESTE_ES_EL_ID]
+    const tracks = [
+        '21urBIcCt4QXKDq4jshN4e',  // canción 1
+        '4BoYjqmRxY6HSuljdLgoRU',  // canción 2
+        '3U5JVgI2x4rDyHGObzJfNf',  // canción 3
+        '1wQvh5x3S37wjUjUGGtpbT',  // canción 4
+        '692weSPBda8DtvL4Di1XyL',  // canción 5
+    ];
+
+    let currentIdx = 0;
+
+    // Cambia el embed al track del índice dado
+    function loadTrack(idx) {
+        currentIdx = ((idx % tracks.length) + tracks.length) % tracks.length;
+        const src = `https://open.spotify.com/embed/track/${tracks[currentIdx]}?utm_source=generator&theme=0`;
+        if (iframe) iframe.src = src;
+        if (trackNum) trackNum.textContent = `${currentIdx + 1} / ${tracks.length}`;
+
+        // Pequeña animación al cambiar
+        if (iframe) {
+            iframe.style.opacity = '0';
+            setTimeout(() => { iframe.style.opacity = '1'; }, 200);
+        }
+    }
+
+    prevBtn?.addEventListener('click', () => loadTrack(currentIdx - 1));
+    nextBtn?.addEventListener('click', () => loadTrack(currentIdx + 1));
+
+    // Inicializo el contador
+    if (trackNum) trackNum.textContent = `1 / ${tracks.length}`;
+
+    // ── Toggle móvil ──
     function isMobile() { return window.innerWidth <= 768; }
 
     function applyMobileState() {
@@ -302,7 +339,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     applyMobileState();
 })();
 
-/* ─── ACTIVE NAV LINK on scroll ─── */
+/* ─── LINK ACTIVO EN EL NAVBAR SEGÚN SECCIÓN VISIBLE ─── */
 const sections = document.querySelectorAll('section[id]');
 const navAs = document.querySelectorAll('.nav-links a');
 
@@ -322,7 +359,7 @@ function updateActiveNav() {
 
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 
-/* ─── TITLE CYCLING ─── */
+/* ─── TÍTULO DE PESTAÑA CON ANIMACIÓN DE ESCRITURA ─── */
 (function () {
     const titles = ['About @psure', 'About @Aaron'];
     let idx = 0;
@@ -334,7 +371,7 @@ window.addEventListener('scroll', updateActiveNav, { passive: true });
         const len = next.length;
         let i = 0;
 
-        // Borra el título actual carácter a carácter
+        // Borra el título actual carácter por carácter
         const current = document.title;
         let temp = current;
         const eraseInterval = setInterval(() => {
@@ -342,7 +379,7 @@ window.addEventListener('scroll', updateActiveNav, { passive: true });
             document.title = temp || '...';
             if (temp.length === 0) {
                 clearInterval(eraseInterval);
-                // Escribe el nuevo título carácter a carácter
+                // Escribe el nuevo título carácter por carácter
                 const typeInterval = setInterval(() => {
                     document.title = next.slice(0, ++i);
                     if (i === len) clearInterval(typeInterval);
@@ -351,6 +388,6 @@ window.addEventListener('scroll', updateActiveNav, { passive: true });
         }, 40);
     }
 
-    // Primer ciclo: espera 4s, luego alterna cada 4s
+    // Primer ciclo: espera 4s y luego alterna cada 4s
     setInterval(cycleTitle, 4000);
 })();
