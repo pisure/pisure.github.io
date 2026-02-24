@@ -1,249 +1,150 @@
-// Configuración de Particles.js
-document.addEventListener('DOMContentLoaded', function() {
+/* ═══════════════════════════════════════════
+   SCRIPTS — PSURE PORTFOLIO v2.0
+═══════════════════════════════════════════ */
+
+'use strict';
+
+/* ─── PARTICLES.JS ─── */
+document.addEventListener('DOMContentLoaded', function () {
     particlesJS("particles-js", {
-        "particles": {
-            "number": {
-                "value": 80,
-                "density": {
-                    "enable": true,
-                    "value_area": 800
-                }
+        particles: {
+            number: { value: 55, density: { enable: true, value_area: 900 } },
+            color: { value: ["#8b5cf6", "#06b6d4", "#ffffff"] },
+            shape: { type: "circle" },
+            opacity: {
+                value: 0.35, random: true,
+                anim: { enable: true, speed: 0.8, opacity_min: 0.05, sync: false }
             },
-            "color": {
-                "value": "#8e44ad"
+            size: {
+                value: 2.5, random: true,
+                anim: { enable: true, speed: 3, size_min: 0.3, sync: false }
             },
-            "shape": {
-                "type": "circle",
-                "stroke": {
-                    "width": 0,
-                    "color": "#000000"
-                }
+            line_linked: {
+                enable: true, distance: 140,
+                color: "#8b5cf6", opacity: 0.18, width: 1
             },
-            "opacity": {
-                "value": 0.5,
-                "random": true,
-                "anim": {
-                    "enable": true,
-                    "speed": 1,
-                    "opacity_min": 0.1,
-                    "sync": false
-                }
-            },
-            "size": {
-                "value": 3,
-                "random": true,
-                "anim": {
-                    "enable": true,
-                    "speed": 4,
-                    "size_min": 0.3,
-                    "sync": false
-                }
-            },
-            "line_linked": {
-                "enable": true,
-                "distance": 150,
-                "color": "#8e44ad",
-                "opacity": 0.4,
-                "width": 1
-            },
-            "move": {
-                "enable": true,
-                "speed": 2,
-                "direction": "none",
-                "random": true,
-                "straight": false,
-                "out_mode": "out",
-                "bounce": false,
-                "attract": {
-                    "enable": true,
-                    "rotateX": 600,
-                    "rotateY": 1200
-                }
+            move: {
+                enable: true, speed: 1.4, direction: "none",
+                random: true, straight: false, out_mode: "out",
+                bounce: false, attract: { enable: false }
             }
         },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-                "onhover": {
-                    "enable": true,
-                    "mode": "repulse"
-                },
-                "onclick": {
-                    "enable": true,
-                    "mode": "push"
-                },
-                "resize": true
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "grab" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
             },
-            "modes": {
-                "grab": {
-                    "distance": 200,
-                    "line_linked": {
-                        "opacity": 1
-                    }
-                },
-                "bubble": {
-                    "distance": 250,
-                    "size": 0,
-                    "duration": 2,
-                    "opacity": 0,
-                    "speed": 3
-                },
-                "repulse": {
-                    "distance": 100,
-                    "duration": 0.4
-                },
-                "push": {
-                    "particles_nb": 4
-                },
-                "remove": {
-                    "particles_nb": 2
-                }
+            modes: {
+                grab: { distance: 160, line_linked: { opacity: 0.6 } },
+                push: { particles_nb: 3 },
+                repulse: { distance: 80, duration: 0.4 }
             }
         },
-        "retina_detect": true
+        retina_detect: true
     });
 });
 
-// Efecto de texto de escritura/borrado
-const typingTextElement = document.getElementById('typing-text');
-const texts = ['Freelancer', 'Estudiante Ing Software', 'FullStack Dev in progress'];
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typingSpeed = 100;
+/* ─── NAVBAR — scroll shrink + hamburger ─── */
+const navbar = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
 
-function typeEffect() {
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-        typingTextElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-        typingSpeed = 50;
-    } else {
-        typingTextElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-        typingSpeed = 100;
-    }
-
-    if (!isDeleting && charIndex === currentText.length) {
-        isDeleting = true;
-        typingSpeed = 1500;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        typingSpeed = 500;
-    }
-    
-    setTimeout(typeEffect, typingSpeed);
-}
-
-// Iniciar efecto de escritura al cargar la página
-setTimeout(typeEffect, 1000);
-
-// Controlador de música
-const audio = document.getElementById('background-music');
-const playBtn = document.getElementById('play-btn');
-const volumeControl = document.getElementById('volume-control');
-let isPlaying = false;
-
-if (playBtn) playBtn.addEventListener('click', togglePlay);
-if (volumeControl) volumeControl.addEventListener('input', adjustVolume);
-
-function togglePlay() {
-    if (!audio) return;
-    if (isPlaying) {
-        audio.pause();
-        if (playBtn) playBtn.innerHTML = '▶';
-    } else {
-        audio.play();
-        if (playBtn) playBtn.innerHTML = '❚❚';
-    }
-    isPlaying = !isPlaying;
-}
-
-function adjustVolume() {
-    if (!audio || !volumeControl) return;
-    audio.volume = volumeControl.value;
-}
-
-// Efecto hover para las tarjetas de proyecto
-const projectCards = document.querySelectorAll('.project-card');
-projectCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-10px) scale(1.02)';
-        card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.3)';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-        card.style.boxShadow = '';
-    });
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Animacion al hacer scroll
-function fadeInOnScroll() {
-    const elements = document.querySelectorAll('.project-card, .section-title');
-    
-    elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
-        
-        if (elementPosition < screenPosition) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }
-    });
-}
-
-window.addEventListener('scroll', fadeInOnScroll);
-window.addEventListener('load', fadeInOnScroll);
-
-// Estilo para las tarjetas de proyecto al cargar
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.project-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = `all 0.5s ease ${index * 0.2}s`;
-    });
-    
-    document.querySelectorAll('.section-title').forEach((title) => {
-        title.style.opacity = '0';
-        title.style.transform = 'translateY(20px)';
-        title.style.transition = 'all 0.5s ease';
-    });
-    
-    setTimeout(fadeInOnScroll, 100);
+hamburger?.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
 });
 
-const tracks = [
-    { title: "Cancion Favorita", src: "audio/ME HACE DAÑO VERTE.mp3" },
-  { title: "This Love", src: "audio/www.jerseyboyssa.co.za - Maroon 5 - This Love (320 KBps).m4a" },
-  { title: "High", src: "audio/Maria Becerra - High (Video Oficial).mp3" }
+navLinks?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+/* ─── TYPING EFFECT ─── */
+const typingTextEl = document.getElementById('typing-text');
+const texts = [
+    'Freelancer',
+    'Estudiante Ing. Software',
+    'Full Stack Developer',
+    'UI / UX Enthusiast'
 ];
 
-let currentTrackIndex = 0;
+let tIdx = 0, cIdx = 0, deleting = false, speed = 110;
 
-const audioSource = document.getElementById('audio-source');
-const trackTitle = document.getElementById('track-title');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-
-function loadTrack(index) {
-  currentTrackIndex = (index + tracks.length) % tracks.length;
-    if (audioSource) audioSource.src = tracks[currentTrackIndex].src;
-    if (audio) audio.load();
-    if (trackTitle) trackTitle.textContent = tracks[currentTrackIndex].title;
-    if (isPlaying && audio) {
-        audio.play();
+function typeEffect() {
+    const current = texts[tIdx];
+    if (deleting) {
+        typingTextEl.textContent = current.substring(0, --cIdx);
+        speed = 55;
+    } else {
+        typingTextEl.textContent = current.substring(0, ++cIdx);
+        speed = 110;
     }
+
+    if (!deleting && cIdx === current.length) {
+        deleting = true; speed = 2000;
+    } else if (deleting && cIdx === 0) {
+        deleting = false;
+        tIdx = (tIdx + 1) % texts.length;
+        speed = 450;
+    }
+    setTimeout(typeEffect, speed);
 }
 
-if (prevBtn) prevBtn.addEventListener('click', () => loadTrack(currentTrackIndex - 1));
-if (nextBtn) nextBtn.addEventListener('click', () => loadTrack(currentTrackIndex + 1));
+setTimeout(typeEffect, 900);
 
-loadTrack(currentTrackIndex);
+/* ─── SCROLL REVEAL (Intersection Observer) ─── */
+function initReveal() {
+    const revealEls = document.querySelectorAll('.reveal, .project-card, .tech-item');
 
-function initImageModal(){
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const delay = el.dataset.delay || 0;
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, delay);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach((el, i) => {
+        if (el.classList.contains('project-card') || el.classList.contains('tech-item')) {
+            el.dataset.delay = (i % 6) * 80;
+        }
+        observer.observe(el);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initReveal);
+
+/* ─── PROJECT ZOOM BTN → triggers modal ─── */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.project-zoom-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const card = btn.closest('.project-card');
+            const img = card?.querySelector('img.project-img');
+            if (img) img.click();
+        });
+    });
+});
+
+/* ─── SVG LOGO ANIMATION ─── */
+document.addEventListener('DOMContentLoaded', function () {
+    const logoText = document.querySelector('.logo-text');
+    if (!logoText) return;
+    setTimeout(() => logoText.classList.add('animate'), 80);
+    setTimeout(() => logoText.classList.add('filled'), 1400);
+});
+
+/* ─── IMAGE MODAL (carousel) ─── */
+function initImageModal() {
     const modal = document.getElementById('img-modal');
     const modalImg = document.querySelector('.img-modal-img');
     const closeBtn = document.querySelector('.img-modal-close');
@@ -251,111 +152,205 @@ function initImageModal(){
     const nextBtn = document.querySelector('.img-modal-next');
     const titleEl = document.querySelector('.img-modal-title');
     const descEl = document.querySelector('.img-modal-desc');
-    const thumbsContainer = document.querySelector('.img-modal-thumbs');
-    if(!modal || !modalImg) return;
+    const thumbsCont = document.querySelector('.img-modal-thumbs');
+    const backdrop = document.querySelector('.img-modal-backdrop');
+    const counterCur = document.getElementById('modal-current');
+    const counterTot = document.getElementById('modal-total');
+    const projectName = document.querySelector('.img-modal-project-name');
+    if (!modal || !modalImg) return;
 
-    let gallery = [];
-    let current = 0;
-    let currentMeta = { title: '', desc: '' };
+    let gallery = [], current = 0, currentMeta = {};
 
-    function openGallery(images, meta, startIndex){
+    function openGallery(images, meta, startIdx) {
         gallery = images.slice();
-        currentMeta = meta || { title: '', desc: '' };
-        current = (typeof startIndex === 'number') ? startIndex : 0;
+        currentMeta = meta || {};
+        current = typeof startIdx === 'number' ? startIdx : 0;
+
+        // Update project name badge
+        if (projectName) projectName.textContent = currentMeta.title || 'Proyecto';
+        if (counterTot) counterTot.textContent = gallery.length;
+
         renderThumbs();
         showSlide(current);
-        if(titleEl) titleEl.textContent = currentMeta.title || '';
-        if(descEl) descEl.textContent = currentMeta.desc || '';
+
+        // Reset animation
+        const shell = modal.querySelector('.img-modal-shell');
+        if (shell) { shell.style.animation = 'none'; shell.offsetWidth; shell.style.animation = ''; }
+
         modal.classList.add('open');
-        modal.setAttribute('aria-hidden','false');
+        modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
     }
 
-    function closeModal(){
+    function closeModal() {
         modal.classList.remove('open');
-        modal.setAttribute('aria-hidden','true');
+        modal.setAttribute('aria-hidden', 'true');
         modalImg.src = '';
         document.body.style.overflow = '';
-        thumbsContainer.innerHTML = '';
-        if(titleEl) titleEl.textContent = '';
-        if(descEl) descEl.textContent = '';
+        if (thumbsCont) thumbsCont.innerHTML = '';
     }
 
-    function showSlide(index){
-        if(!gallery || gallery.length === 0) return;
-        current = (index + gallery.length) % gallery.length;
-        // efecto fade
-        modalImg.style.opacity = 0;
-        const nextSrc = gallery[current];
-        const img = new Image();
-        img.onload = () => {
-            modalImg.src = nextSrc;
-            setTimeout(()=>{ modalImg.style.opacity = 1; }, 30);
+    function showSlide(idx) {
+        if (!gallery.length) return;
+        current = ((idx % gallery.length) + gallery.length) % gallery.length;
+        modalImg.style.opacity = '0';
+        const preload = new Image();
+        preload.onload = () => {
+            modalImg.src = gallery[current];
+            setTimeout(() => { modalImg.style.opacity = '1'; }, 30);
             updateActiveThumb();
+            if (counterCur) counterCur.textContent = current + 1;
         };
-        img.src = nextSrc;
+        preload.src = gallery[current];
     }
 
-    function renderThumbs(){
-        if(!thumbsContainer) return;
-        thumbsContainer.innerHTML = '';
+    function renderThumbs() {
+        if (!thumbsCont) return;
+        thumbsCont.innerHTML = '';
         gallery.forEach((src, idx) => {
             const btn = document.createElement('button');
             btn.type = 'button';
+            btn.setAttribute('aria-label', `Imagen ${idx + 1}`);
             const im = document.createElement('img');
-            im.src = src;
-            im.alt = `thumb-${idx}`;
+            im.src = src; im.alt = `thumb-${idx}`;
             btn.appendChild(im);
-            btn.addEventListener('click', ()=> showSlide(idx));
-            thumbsContainer.appendChild(btn);
+            btn.addEventListener('click', () => showSlide(idx));
+            thumbsCont.appendChild(btn);
         });
         updateActiveThumb();
     }
 
-    function updateActiveThumb(){
-        if(!thumbsContainer) return;
-        Array.from(thumbsContainer.children).forEach((btn, idx)=>{
-            if(idx === current) btn.classList.add('active'); else btn.classList.remove('active');
+    function updateActiveThumb() {
+        if (!thumbsCont) return;
+        Array.from(thumbsCont.children).forEach((btn, idx) => {
+            btn.classList.toggle('active', idx === current);
         });
-        if(titleEl) titleEl.textContent = currentMeta.title || '';
-        if(descEl) descEl.textContent = currentMeta.desc || '';
     }
 
-    if(closeBtn) closeBtn.addEventListener('click', closeModal);
-    if(prevBtn) prevBtn.addEventListener('click', ()=> showSlide(current - 1));
-    if(nextBtn) nextBtn.addEventListener('click', ()=> showSlide(current + 1));
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+    prevBtn?.addEventListener('click', () => showSlide(current - 1));
+    nextBtn?.addEventListener('click', () => showSlide(current + 1));
 
-    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e)=>{
-        if(e.key === 'Escape') return closeModal();
-        if(e.key === 'ArrowLeft') return showSlide(current - 1);
-        if(e.key === 'ArrowRight') return showSlide(current + 1);
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('open')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showSlide(current - 1);
+        if (e.key === 'ArrowRight') showSlide(current + 1);
     });
 
-    document.querySelectorAll('img.project-img[data-enlarge="true"]').forEach(imgEl=>{
+    document.querySelectorAll('img.project-img[data-enlarge="true"]').forEach(imgEl => {
         imgEl.style.cursor = 'zoom-in';
-        imgEl.addEventListener('click', ()=>{
-            const imagesAttr = imgEl.getAttribute('data-images');
-            const images = imagesAttr ? imagesAttr.split(',').map(s=>s.trim()).filter(Boolean) : [imgEl.src];
+        imgEl.addEventListener('click', () => {
+            const attr = imgEl.getAttribute('data-images');
+            const images = attr ? attr.split(',').map(s => s.trim()).filter(Boolean) : [imgEl.src];
             const title = imgEl.getAttribute('data-title') || '';
             const desc = imgEl.getAttribute('data-desc') || '';
-            let startIndex = images.indexOf(imgEl.src);
-            if(startIndex === -1) startIndex = 0;
-            openGallery(images, { title, desc }, startIndex);
+            let startIdx = images.indexOf(imgEl.getAttribute('src'));
+            if (startIdx === -1) startIdx = 0;
+            openGallery(images, { title, desc }, startIdx);
         });
     });
 }
 
 document.addEventListener('DOMContentLoaded', initImageModal);
 
-document.addEventListener('DOMContentLoaded', function(){
-    const logoText = document.querySelector('.logo-text');
-    if(!logoText) return;
-    setTimeout(()=>{
-        logoText.classList.add('animate');
-    }, 80);
-    setTimeout(()=>{
-        logoText.classList.add('filled');
-    }, 1400);
+/* ─── SMOOTH ANCHOR SCROLL ─── */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            const yOffset = -75;
+            window.scrollTo({
+                top: target.getBoundingClientRect().top + window.scrollY + yOffset,
+                behavior: 'smooth'
+            });
+        }
+    });
 });
 
+/* ─── MUSIC WIDGET MOBILE TOGGLE ─── */
+(function () {
+    const toggleBtn = document.getElementById('music-toggle-btn');
+    const musicBody = document.getElementById('music-body');
+    const chevron = document.getElementById('music-chevron');
+    if (!toggleBtn || !musicBody) return;
+
+    // Sólo activa en móvil
+    function isMobile() { return window.innerWidth <= 768; }
+
+    function applyMobileState() {
+        if (isMobile()) {
+            // empieza cerrado
+            musicBody.classList.remove('open');
+            chevron.style.transform = 'rotate(180deg)';
+        } else {
+            // escritorio: siempre abierto
+            musicBody.classList.add('open');
+            chevron.style.transform = '';
+        }
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        if (!isMobile()) return;
+        const isOpen = musicBody.classList.toggle('open');
+        chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+    });
+
+    window.addEventListener('resize', applyMobileState);
+    applyMobileState();
+})();
+
+/* ─── ACTIVE NAV LINK on scroll ─── */
+const sections = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+
+function updateActiveNav() {
+    const scrollY = window.scrollY + 120;
+    sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollY >= top && scrollY < top + height) {
+            navAs.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === `#${section.id}`) a.classList.add('active');
+            });
+        }
+    });
+}
+
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+/* ─── TITLE CYCLING ─── */
+(function () {
+    const titles = ['About @psure', 'About @Aaron'];
+    let idx = 0;
+
+    function cycleTitle() {
+        idx = (idx + 1) % titles.length;
+
+        const next = titles[idx];
+        const len = next.length;
+        let i = 0;
+
+        // Borra el título actual carácter a carácter
+        const current = document.title;
+        let temp = current;
+        const eraseInterval = setInterval(() => {
+            temp = temp.slice(0, -1);
+            document.title = temp || '...';
+            if (temp.length === 0) {
+                clearInterval(eraseInterval);
+                // Escribe el nuevo título carácter a carácter
+                const typeInterval = setInterval(() => {
+                    document.title = next.slice(0, ++i);
+                    if (i === len) clearInterval(typeInterval);
+                }, 60);
+            }
+        }, 40);
+    }
+
+    // Primer ciclo: espera 4s, luego alterna cada 4s
+    setInterval(cycleTitle, 4000);
+})();
