@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://psure.fun">
 
     <!-- Favicon-->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="img/favicon-a.svg">
 
     <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,8 +44,13 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact" class="nav-cta">Contacto</a></li>
         </ul>
-        <div class="nav-hamburger" id="hamburger" aria-label="Menú">
-            <span></span><span></span><span></span>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <i class="fas fa-sun" id="theme-icon"></i>
+            </button>
+            <div class="nav-hamburger" id="hamburger" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </div>
         </div>
     </nav>
 
@@ -523,17 +528,45 @@
         <div class="contact-glow"></div>
         <div class="container">
             <div class="contact-card reveal">
-                <span class="contact-icon"><i class="fas fa-handshake"></i></span>
+                <span class="contact-icon"><i class="fas fa-envelope"></i></span>
                 <h2 class="contact-heading">¿Trabajamos juntos?</h2>
                 <p class="contact-text">
-                    Estoy disponible para proyectos freelance, colaboraciones y oportunidades interesantes.
-                    Si tienes una idea, escríbeme y lo hacemos realidad.
+                    Tengo una idea, quiero colaborar o simplemente quiero saludar.
+                    Compléta el formulario y te respondo a la brevedad.
                 </p>
-                <a href="https://discord.com/users/pisuree" target="_blank" class="contact-btn"
-                    id="discord-contact-btn">
-                    <i class="fab fa-discord"></i>
-                    Contáctame en Discord
-                </a>
+
+                <!-- Formulario con Formspree. -->
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/mgopppqn" method="POST">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">Nombre</label>
+                            <input type="text" id="contact-name" name="nombre" placeholder="Tu nombre" required
+                                autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" name="email" placeholder="tu@email.com" required
+                                autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message">Mensaje</label>
+                        <textarea id="contact-message" name="mensaje" placeholder="Cuéntame sobre tu proyecto o idea..."
+                            required></textarea>
+                    </div>
+
+                    <div class="form-feedback" id="form-feedback" role="alert"></div>
+
+                    <button type="submit" class="contact-submit" id="contact-submit">
+                        <span class="submit-spinner"></span>
+                        <span class="submit-label">
+                            <i class="fas fa-paper-plane" style="margin-right:0.4rem"></i>
+                            Enviar mensaje
+                        </span>
+                    </button>
+                </form>
             </div>
         </div>
     </section>

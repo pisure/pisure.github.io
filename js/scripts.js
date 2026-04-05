@@ -361,13 +361,22 @@ window.addEventListener('scroll', updateActiveNav, { passive: true });
 
 /* ─── TÍTULO DE PESTAÑA CON ANIMACIÓN DE ESCRITURA ─── */
 (function () {
-    const titles = ['About @psure', 'About @Aaron'];
+    const entries = [
+        { title: 'About @psure', favicon: 'img/favicon-p.svg' },
+        { title: 'About @Aaron', favicon: 'img/favicon-a.svg' },
+    ];
     let idx = 0;
 
-    function cycleTitle() {
-        idx = (idx + 1) % titles.length;
+    // Referencia al link del favicon
+    const faviconEl = document.querySelector("link[rel='icon']");
 
-        const next = titles[idx];
+    function setFavicon(href) {
+        if (faviconEl) faviconEl.href = href;
+    }
+
+    function cycleTitle() {
+        idx = (idx + 1) % entries.length;
+        const { title: next, favicon } = entries[idx];
         const len = next.length;
         let i = 0;
 
@@ -379,6 +388,8 @@ window.addEventListener('scroll', updateActiveNav, { passive: true });
             document.title = temp || '...';
             if (temp.length === 0) {
                 clearInterval(eraseInterval);
+                // Cambia el favicon al mismo tiempo que empieza a escribir
+                setFavicon(favicon);
                 // Escribe el nuevo título carácter por carácter
                 const typeInterval = setInterval(() => {
                     document.title = next.slice(0, ++i);
@@ -391,3 +402,79 @@ window.addEventListener('scroll', updateActiveNav, { passive: true });
     // Primer ciclo: espera 4s y luego alterna cada 4s
     setInterval(cycleTitle, 4000);
 })();
+
+/* ─── TOGGLE DE TEMA CLARO / OSCURO ─── */
+(function () {
+    const btn  = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+    if (!btn || !icon) return;
+
+    // Aplica el tema guardado o el del sistema
+    const saved = localStorage.getItem('psure-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = saved || (prefersDark ? 'dark' : 'light');
+    applyTheme(initial);
+
+    btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            icon.className = 'fas fa-moon';
+            btn.title = 'Cambiar a modo oscuro';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            icon.className = 'fas fa-sun';
+            btn.title = 'Cambiar a modo claro';
+        }
+        localStorage.setItem('psure-theme', theme);
+    }
+})();
+
+/* ─── FORMULARIO DE CONTACTO (Formspree) ─── */
+(function () {
+    const form     = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('contact-submit');
+    const feedback = document.getElementById('form-feedback');
+    if (!form || !submitBtn || !feedback) return;
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Estado de carga
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+        feedback.className = 'form-feedback';
+        feedback.textContent = '';
+
+        try {
+            const data = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                feedback.className = 'form-feedback success';
+                feedback.innerHTML = '<i class="fas fa-check-circle"></i> ¡Mensaje enviado! Te responderé pronto.';
+                form.reset();
+            } else {
+                const json = await response.json().catch(() => ({}));
+                const msg = json.errors?.map(err => err.message).join(', ') || 'Error al enviar. Inténtalo de nuevo.';
+                feedback.className = 'form-feedback error';
+                feedback.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${msg}`;
+            }
+        } catch (_) {
+            feedback.className = 'form-feedback error';
+            feedback.innerHTML = '<i class="fas fa-wifi"></i> Sin conexión. Revisa tu internet e inténtalo de nuevo.';
+        } finally {
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+        }
+    });
+})();
+
