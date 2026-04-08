@@ -21,10 +21,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Font Awesome para los iconos de redes y botones -->
+    <!-- Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Hoja de estilos principal -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -33,21 +31,29 @@
     <!-- Fondo de partículas -->
     <div id="particles-js"></div>
 
+    <!-- Glows laterales -->
+    <div class="edge-glow edge-glow-left"></div>
+    <div class="edge-glow edge-glow-right"></div>
+
     <!-- ═══ BARRA DE NAVEGACIÓN ═══ -->
     <nav class="navbar" id="navbar">
-        <a href="#hero" class="nav-logo">
-            <span>@psure</span>
-        </a>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#about">Sobre mí</a></li>
-            <li><a href="#projects">Proyectos</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact" class="nav-cta">Contacto</a></li>
-        </ul>
-        <div style="display:flex;align-items:center;gap:0.5rem;">
-            <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
-                <i class="fas fa-sun" id="theme-icon"></i>
-            </button>
+        <div class="navbar-inner">
+            <a href="#hero" class="nav-logo" id="nav-logo">
+                <span class="nav-logo-text">@PSURE</span>
+            </a>
+            <div class="nav-separator"></div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" class="nav-link">Inicio</a></li>
+                <li><a href="#about" class="nav-link">Sobre mí</a></li>
+                <li><a href="#projects" class="nav-link">Proyectos</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+                <a href="#contact" class="nav-cta-btn">Contacto</a>
+            </div>
             <div class="nav-hamburger" id="hamburger" aria-label="Menú">
                 <span></span><span></span><span></span>
             </div>
@@ -118,7 +124,7 @@
         </div>
     </section>
 
-    <!-- ═══ SECCIÓN SOBRE MÍ ═══ -->
+    <!-- ═══ ABOUT ME ═══ -->
     <section class="section" id="about">
         <div class="container">
             <div class="about-grid">
@@ -166,7 +172,7 @@
         </div>
     </section>
 
-    <!-- ═══ SECCIÓN DE PROYECTOS ═══ -->
+    <!-- ═══ PROYECTOS ═══ -->
     <section class="section" id="projects">
         <div class="container">
             <div class="section-header reveal">
@@ -263,7 +269,7 @@
                     </div>
                 </div>
 
-                <!-- Proyecto 4 — Inventario Inteligente -->
+                <!-- Proyecto 4 — Inventario IA -->
                 <div class="project-card">
                     <div class="project-img-wrap">
                         <img src="img/rosamy1.png" alt="InvIA" class="project-img" data-enlarge="true"
@@ -421,7 +427,7 @@
         </div>
     </section>
 
-    <!-- ═══ SECCIÓN DE SKILLS ═══ -->
+    <!-- ═══ SKILLS ═══ -->
     <section class="section skills-section" id="skills">
         <div class="container">
             <div class="section-header reveal">
@@ -431,99 +437,142 @@
                 <div class="divider"></div>
             </div>
 
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <i class="fab fa-html5" style="color:#E34F26;"></i>
-                    <span class="tech-label">HTML5</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-css3-alt" style="color:#1572B6;"></i>
-                    <span class="tech-label">CSS3</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-js-square" style="color:#F7DF1E;"></i>
-                    <span class="tech-label">JavaScript</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-react" style="color:#61DAFB;"></i>
-                    <span class="tech-label">React</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-node-js" style="color:#339933;"></i>
-                    <span class="tech-label">Node.js</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-php" style="color:#777BB4;"></i>
-                    <span class="tech-label">PHP</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-github" style="color:#ffffff;"></i>
-                    <span class="tech-label">GitHub</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fas fa-leaf" style="color:#47A248;"></i>
-                    <span class="tech-label">MongoDB</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fas fa-database" style="color:#00758F;"></i>
-                    <span class="tech-label">MySQL</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-bootstrap" style="color:#7952B3;"></i>
-                    <span class="tech-label">Bootstrap</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-wordpress" style="color:#21759B;"></i>
-                    <span class="tech-label">WordPress</span>
-                </div>
-                <div class="tech-item">
-                    <span class="cplusplus-icon tech-svg" title="C++">
-                        <svg viewBox="0 0 128 128" width="36" height="36">
-                            <path fill="#00599C"
-                                d="M115.4 30.7l-48.3-27.8c-.8-.5-1.9-.7-3.1-.7-1.2 0-2.3.3-3.1.7l-48 27.9c-1.7 1-2.9 3.5-2.9 5.4v55.7c0 1.1.2 2.4 1 3.5l106.8-62c-.6-1.2-1.5-2.1-2.4-2.7z" />
-                            <path fill="#004482"
-                                d="M10.7 95.3c.5.8 1.2 1.5 1.9 1.9l48.2 27.9c.8.5 1.9.7 3.1.7 1.2 0 2.3-.3 3.1-.7l48-27.9c1.7-1 2.9-3.5 2.9-5.4v-55.7c0-.9-.1-1.9-.6-2.8l-106.6 62z" />
-                            <path fill="#fff"
-                                d="M85.3 76.1c-4.2 0-7.6-3.4-7.6-7.6 0-4.2 3.4-7.6 7.6-7.6 4.2 0 7.6 3.4 7.6 7.6 0 4.2-3.4 7.6-7.6 7.6zm-42.5 0c-4.2 0-7.6-3.4-7.6-7.6 0-4.2 3.4-7.6 7.6-7.6 4.2 0 7.6 3.4 7.6 7.6 0 4.2-3.4 7.6-7.6 7.6z" />
-                        </svg>
-                    </span>
-                    <span class="tech-label">C++</span>
-                </div>
+            <!-- Carrusel -->
+            <div class="tech-carousel-wrapper reveal">
+                <div class="tech-carousel-track">
+                    <!-- Items -->
+                    <div class="tech-item"><i class="fab fa-html5" style="color:#E34F26;"></i><span
+                            class="tech-label">HTML5</span></div>
+                    <div class="tech-item"><i class="fab fa-css3-alt" style="color:#1572B6;"></i><span
+                            class="tech-label">CSS3</span></div>
+                    <div class="tech-item"><i class="fab fa-js-square" style="color:#F7DF1E;"></i><span
+                            class="tech-label">JavaScript</span></div>
+                    <div class="tech-item"><i class="fab fa-react" style="color:#61DAFB;"></i><span
+                            class="tech-label">React</span></div>
+                    <div class="tech-item"><i class="fab fa-node-js" style="color:#339933;"></i><span
+                            class="tech-label">Node.js</span></div>
+                    <div class="tech-item"><i class="fab fa-php" style="color:#777BB4;"></i><span
+                            class="tech-label">PHP</span></div>
+                    <div class="tech-item"><i class="fab fa-github" style="color:#ffffff;"></i><span
+                            class="tech-label">GitHub</span></div>
+                    <div class="tech-item"><i class="fas fa-leaf" style="color:#47A248;"></i><span
+                            class="tech-label">MongoDB</span></div>
+                    <div class="tech-item"><i class="fas fa-database" style="color:#00758F;"></i><span
+                            class="tech-label">MySQL</span></div>
+                    <div class="tech-item"><i class="fab fa-bootstrap" style="color:#7952B3;"></i><span
+                            class="tech-label">Bootstrap</span></div>
+                    <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759B;"></i><span
+                            class="tech-label">WordPress</span></div>
+                    <div class="tech-item">
+                        <span class="cplusplus-icon tech-svg" title="C++">
+                            <svg viewBox="0 0 128 128" width="36" height="36">
+                                <path fill="#00599C"
+                                    d="M115.4 30.7l-48.3-27.8c-.8-.5-1.9-.7-3.1-.7-1.2 0-2.3.3-3.1.7l-48 27.9c-1.7 1-2.9 3.5-2.9 5.4v55.7c0 1.1.2 2.4 1 3.5l106.8-62c-.6-1.2-1.5-2.1-2.4-2.7z" />
+                                <path fill="#004482"
+                                    d="M10.7 95.3c.5.8 1.2 1.5 1.9 1.9l48.2 27.9c.8.5 1.9.7 3.1.7 1.2 0 2.3-.3 3.1-.7l48-27.9c1.7-1 2.9-3.5 2.9-5.4v-55.7c0-.9-.1-1.9-.6-2.8l-106.6 62z" />
+                                <path fill="#fff"
+                                    d="M85.3 76.1c-4.2 0-7.6-3.4-7.6-7.6 0-4.2 3.4-7.6 7.6-7.6 4.2 0 7.6 3.4 7.6 7.6 0 4.2-3.4 7.6-7.6 7.6zm-42.5 0c-4.2 0-7.6-3.4-7.6-7.6 0-4.2 3.4-7.6 7.6-7.6 4.2 0 7.6 3.4 7.6 7.6 0 4.2-3.4 7.6-7.6 7.6z" />
+                            </svg>
+                        </span>
+                        <span class="tech-label">C++</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-svg" title="Tailwind CSS">
+                            <svg viewBox="0 0 54 33" width="38" height="23" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M27 0C19.8 0 15.3 3.6 13.5 10.8C16.2 7.2 19.35 5.85 22.95 6.75C25.004 7.263 26.472 8.754 28.097 10.403C30.744 13.09 33.808 16.2 40.5 16.2C47.7 16.2 52.2 12.6 54 5.4C51.3 9 48.15 10.35 44.55 9.45C42.497 8.937 41.03 7.446 39.403 5.797C36.756 3.11 33.692 0 27 0ZM13.5 16.2C6.3 16.2 1.8 19.8 0 27C2.7 23.4 5.85 22.05 9.45 22.95C11.503 23.464 12.97 24.954 14.597 26.603C17.244 29.29 20.308 32.4 27 32.4C34.2 32.4 38.7 28.8 40.5 21.6C37.8 25.2 34.65 26.55 31.05 25.65C28.997 25.137 27.53 23.646 25.903 21.997C23.256 19.31 20.192 16.2 13.5 16.2Z"
+                                    fill="#38BDF8" />
+                            </svg>
+                        </span>
+                        <span class="tech-label">Tailwind</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-svg" title="Astro">
+                            <svg viewBox="0 0 256 366" width="28" height="40" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M182.022 9.147C187.354 15.518 189.807 23.449 194.714 39.31L255.982 234.957a104.081 104.081 0 0 0-59.255-25.565L157.756 73.861a5.15 5.15 0 0 0-9.896 0L109.02 209.437A104.078 104.078 0 0 0 49.765 234.957L111.076 39.31c4.907-15.862 7.36-23.793 12.692-30.163A42.942 42.942 0 0 1 140.562.29C148.139-.37 156.15 2.05 172.17 6.89A42.956 42.956 0 0 1 182.022 9.147Z"
+                                    fill="#FF5D01" />
+                                <path
+                                    d="M189.742 256.017C177.608 266.405 153.119 273.376 128.002 273.376c-31.497 0-57.188-9.781-64.186-22.979-2.46 7.493-3.019 16.054-3.019 21.579 0 0-1.621 26.638 16.956 45.214C79.712 333.15 87.202 336 128.002 336c40.799 0 48.29-2.85 50.25-18.81 18.576-18.575 16.955-45.214 16.955-45.214 0-5.525-.559-14.086-3.02-21.579Z"
+                                    fill="#FF5D01" />
+                                <path
+                                    d="M189.742 256.017C177.608 266.405 153.119 273.376 128.002 273.376c-31.497 0-57.188-9.781-64.186-22.979C57.08 261.82 49.765 275.81 49.765 291.29c0 .163.003.326.009.488 13.565 11.546 44.28 19.646 79.228 19.646 34.949 0 65.663-8.1 79.228-19.646.006-.162.01-.325.01-.488 0-15.48-7.316-29.47-18.498-35.272Z"
+                                    fill="#FF7D33" opacity="0.5" />
+                            </svg>
+                        </span>
+                        <span class="tech-label">Astro</span>
+                    </div>
 
-                <!-- Tailwind CSS — el que me salva en el diseño -->
-                <div class="tech-item">
-                    <span class="tech-svg" title="Tailwind CSS">
-                        <svg viewBox="0 0 54 33" width="38" height="23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M27 0C19.8 0 15.3 3.6 13.5 10.8C16.2 7.2 19.35 5.85 22.95 6.75C25.004 7.263 26.472 8.754 28.097 10.403C30.744 13.09 33.808 16.2 40.5 16.2C47.7 16.2 52.2 12.6 54 5.4C51.3 9 48.15 10.35 44.55 9.45C42.497 8.937 41.03 7.446 39.403 5.797C36.756 3.11 33.692 0 27 0ZM13.5 16.2C6.3 16.2 1.8 19.8 0 27C2.7 23.4 5.85 22.05 9.45 22.95C11.503 23.464 12.97 24.954 14.597 26.603C17.244 29.29 20.308 32.4 27 32.4C34.2 32.4 38.7 28.8 40.5 21.6C37.8 25.2 34.65 26.55 31.05 25.65C28.997 25.137 27.53 23.646 25.903 21.997C23.256 19.31 20.192 16.2 13.5 16.2Z"
-                                fill="#38BDF8" />
-                        </svg>
-                    </span>
-                    <span class="tech-label">Tailwind</span>
-                </div>
-
-                <!-- Astro — para los proyectos más estáticos -->
-                <div class="tech-item">
-                    <span class="tech-svg" title="Astro">
-                        <svg viewBox="0 0 256 366" width="28" height="40" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M182.022 9.147C187.354 15.518 189.807 23.449 194.714 39.31L255.982 234.957a104.081 104.081 0 0 0-59.255-25.565L157.756 73.861a5.15 5.15 0 0 0-9.896 0L109.02 209.437A104.078 104.078 0 0 0 49.765 234.957L111.076 39.31c4.907-15.862 7.36-23.793 12.692-30.163A42.942 42.942 0 0 1 140.562.29C148.139-.37 156.15 2.05 172.17 6.89A42.956 42.956 0 0 1 182.022 9.147Z"
-                                fill="#FF5D01" />
-                            <path
-                                d="M189.742 256.017C177.608 266.405 153.119 273.376 128.002 273.376c-31.497 0-57.188-9.781-64.186-22.979-2.46 7.493-3.019 16.054-3.019 21.579 0 0-1.621 26.638 16.956 45.214C79.712 333.15 87.202 336 128.002 336c40.799 0 48.29-2.85 50.25-18.81 18.576-18.575 16.955-45.214 16.955-45.214 0-5.525-.559-14.086-3.02-21.579Z"
-                                fill="#FF5D01" />
-                            <path
-                                d="M189.742 256.017C177.608 266.405 153.119 273.376 128.002 273.376c-31.497 0-57.188-9.781-64.186-22.979C57.08 261.82 49.765 275.81 49.765 291.29c0 .163.003.326.009.488 13.565 11.546 44.28 19.646 79.228 19.646 34.949 0 65.663-8.1 79.228-19.646.006-.162.01-.325.01-.488 0-15.48-7.316-29.47-18.498-35.272Z"
-                                fill="#FF7D33" opacity="0.5" />
-                        </svg>
-                    </span>
-                    <span class="tech-label">Astro</span>
+                    <!-- Duplicate Items for Infinite Scroll -->
+                    <div class="tech-item"><i class="fab fa-html5" style="color:#E34F26;"></i><span
+                            class="tech-label">HTML5</span></div>
+                    <div class="tech-item"><i class="fab fa-css3-alt" style="color:#1572B6;"></i><span
+                            class="tech-label">CSS3</span></div>
+                    <div class="tech-item"><i class="fab fa-js-square" style="color:#F7DF1E;"></i><span
+                            class="tech-label">JavaScript</span></div>
+                    <div class="tech-item"><i class="fab fa-react" style="color:#61DAFB;"></i><span
+                            class="tech-label">React</span></div>
+                    <div class="tech-item"><i class="fab fa-node-js" style="color:#339933;"></i><span
+                            class="tech-label">Node.js</span></div>
+                    <div class="tech-item"><i class="fab fa-php" style="color:#777BB4;"></i><span
+                            class="tech-label">PHP</span></div>
+                    <div class="tech-item"><i class="fab fa-github" style="color:#ffffff;"></i><span
+                            class="tech-label">GitHub</span></div>
+                    <div class="tech-item"><i class="fas fa-leaf" style="color:#47A248;"></i><span
+                            class="tech-label">MongoDB</span></div>
+                    <div class="tech-item"><i class="fas fa-database" style="color:#00758F;"></i><span
+                            class="tech-label">MySQL</span></div>
+                    <div class="tech-item"><i class="fab fa-bootstrap" style="color:#7952B3;"></i><span
+                            class="tech-label">Bootstrap</span></div>
+                    <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759B;"></i><span
+                            class="tech-label">WordPress</span></div>
+                    <div class="tech-item">
+                        <span class="cplusplus-icon tech-svg" title="C++">
+                            <svg viewBox="0 0 128 128" width="36" height="36">
+                                <path fill="#00599C"
+                                    d="M115.4 30.7l-48.3-27.8c-.8-.5-1.9-.7-3.1-.7-1.2 0-2.3.3-3.1.7l-48 27.9c-1.7 1-2.9 3.5-2.9 5.4v55.7c0 1.1.2 2.4 1 3.5l106.8-62c-.6-1.2-1.5-2.1-2.4-2.7z" />
+                                <path fill="#004482"
+                                    d="M10.7 95.3c.5.8 1.2 1.5 1.9 1.9l48.2 27.9c.8.5 1.9.7 3.1.7 1.2 0 2.3-.3 3.1-.7l48-27.9c1.7-1 2.9-3.5 2.9-5.4v-55.7c0-.9-.1-1.9-.6-2.8l-106.6 62z" />
+                                <path fill="#fff"
+                                    d="M85.3 76.1c-4.2 0-7.6-3.4-7.6-7.6 0-4.2 3.4-7.6 7.6-7.6 4.2 0 7.6 3.4 7.6 7.6 0 4.2-3.4 7.6-7.6 7.6zm-42.5 0c-4.2 0-7.6-3.4-7.6-7.6 0-4.2 3.4-7.6 7.6-7.6 4.2 0 7.6 3.4 7.6 7.6 0 4.2-3.4 7.6-7.6 7.6z" />
+                            </svg>
+                        </span>
+                        <span class="tech-label">C++</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-svg" title="Tailwind CSS">
+                            <svg viewBox="0 0 54 33" width="38" height="23" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M27 0C19.8 0 15.3 3.6 13.5 10.8C16.2 7.2 19.35 5.85 22.95 6.75C25.004 7.263 26.472 8.754 28.097 10.403C30.744 13.09 33.808 16.2 40.5 16.2C47.7 16.2 52.2 12.6 54 5.4C51.3 9 48.15 10.35 44.55 9.45C42.497 8.937 41.03 7.446 39.403 5.797C36.756 3.11 33.692 0 27 0ZM13.5 16.2C6.3 16.2 1.8 19.8 0 27C2.7 23.4 5.85 22.05 9.45 22.95C11.503 23.464 12.97 24.954 14.597 26.603C17.244 29.29 20.308 32.4 27 32.4C34.2 32.4 38.7 28.8 40.5 21.6C37.8 25.2 34.65 26.55 31.05 25.65C28.997 25.137 27.53 23.646 25.903 21.997C23.256 19.31 20.192 16.2 13.5 16.2Z"
+                                    fill="#38BDF8" />
+                            </svg>
+                        </span>
+                        <span class="tech-label">Tailwind</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-svg" title="Astro">
+                            <svg viewBox="0 0 256 366" width="28" height="40" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M182.022 9.147C187.354 15.518 189.807 23.449 194.714 39.31L255.982 234.957a104.081 104.081 0 0 0-59.255-25.565L157.756 73.861a5.15 5.15 0 0 0-9.896 0L109.02 209.437A104.078 104.078 0 0 0 49.765 234.957L111.076 39.31c4.907-15.862 7.36-23.793 12.692-30.163A42.942 42.942 0 0 1 140.562.29C148.139-.37 156.15 2.05 172.17 6.89A42.956 42.956 0 0 1 182.022 9.147Z"
+                                    fill="#FF5D01" />
+                                <path
+                                    d="M189.742 256.017C177.608 266.405 153.119 273.376 128.002 273.376c-31.497 0-57.188-9.781-64.186-22.979-2.46 7.493-3.019 16.054-3.019 21.579 0 0-1.621 26.638 16.956 45.214C79.712 333.15 87.202 336 128.002 336c40.799 0 48.29-2.85 50.25-18.81 18.576-18.575 16.955-45.214 16.955-45.214 0-5.525-.559-14.086-3.02-21.579Z"
+                                    fill="#FF5D01" />
+                                <path
+                                    d="M189.742 256.017C177.608 266.405 153.119 273.376 128.002 273.376c-31.497 0-57.188-9.781-64.186-22.979C57.08 261.82 49.765 275.81 49.765 291.29c0 .163.003.326.009.488 13.565 11.546 44.28 19.646 79.228 19.646 34.949 0 65.663-8.1 79.228-19.646.006-.162.01-.325.01-.488 0-15.48-7.316-29.47-18.498-35.272Z"
+                                    fill="#FF7D33" opacity="0.5" />
+                            </svg>
+                        </span>
+                        <span class="tech-label">Astro</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ═══ SECCIÓN DE CONTACTO ═══ -->
+    <!-- ═══ CONTACTO ═══ -->
     <section class="section contact-section" id="contact">
         <div class="contact-glow"></div>
         <div class="container">
@@ -535,7 +584,7 @@
                     Compléta el formulario y te respondo a la brevedad.
                 </p>
 
-                <!-- Formulario con Formspree. -->
+                <!-- Formulario -->
                 <form class="contact-form" id="contact-form" action="https://formspree.io/f/mgopppqn" method="POST">
 
                     <div class="form-row">
@@ -571,9 +620,21 @@
         </div>
     </section>
 
-    <!-- ═══ PIE DE PÁGINA ═══ -->
-    <footer>
-        <p>Hecho por psure — <span>@psure</span> · 2025</p>
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer-simple">
+        <div class="container">
+            <div class="footer-simple-content">
+                <span class="footer-logo">PSURE<span class="footer-dot">.</span></span>
+                
+                <div class="footer-socials">
+                    <a href="https://github.com/pisure" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/aaron-espinoza-393856346/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/ron.es4/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+
+                <p class="footer-copyright">© 2026 PSURE. Hecho con <i class="fas fa-heart" style="color: #ffffff;"></i> por Aaron Espinoza.</p>
+            </div>
+        </div>
     </footer>
 
     <!-- ═══ WIDGET DE MÚSICA ═══ -->
@@ -586,7 +647,7 @@
             </button>
             <div class="music-body" id="music-body">
                 <div class="music-title"><i class="fas fa-music"></i> psure tracks</div>
-                <!-- Controles de navegación entre tracks -->
+                <!-- Controles de navegación -->
                 <div class="music-nav">
                     <button class="music-nav-btn" id="music-prev" aria-label="Canción anterior" title="Anterior">
                         <i class="fas fa-backward-step"></i>
@@ -609,15 +670,13 @@
         </div>
     </div>
 
-    <!-- ═══ MODAL DE IMÁGENES — galería de proyectos ═══ -->
+    <!-- ═══ MODAL DE IMÁGENES ═══ -->
     <div id="img-modal" class="img-modal" aria-hidden="true" role="dialog" aria-modal="true">
 
         <!-- Fondo oscuro — clic aquí para cerrar -->
         <div class="img-modal-backdrop"></div>
 
         <div class="img-modal-shell">
-
-            <!-- ── Barra superior con título y botón cerrar ── -->
             <div class="img-modal-topbar">
                 <div class="img-modal-project-badge">
                     <i class="fas fa-images"></i>
@@ -653,7 +712,7 @@
                 </button>
             </div>
 
-            <!-- ── Barra inferior con miniaturas e info ── -->
+            <!-- ── Barra inferior con miniaturas ── -->
             <div class="img-modal-bottom">
 
                 <!-- Miniaturas de las imágenes -->
@@ -675,7 +734,7 @@
         </div>
     </div>
 
-    <!-- Scripts al final para no bloquear la carga -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/scripts.js"></script>
 </body>

@@ -59,7 +59,7 @@ hamburger?.addEventListener('click', () => {
     navLinks.classList.toggle('open');
 });
 
-navLinks?.querySelectorAll('a').forEach(a => {
+navLinks?.querySelectorAll('.nav-link').forEach(a => {
     a.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
@@ -341,7 +341,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 /* ─── LINK ACTIVO EN EL NAVBAR SEGÚN SECCIÓN VISIBLE ─── */
 const sections = document.querySelectorAll('section[id]');
-const navAs = document.querySelectorAll('.nav-links a');
+const navAs = document.querySelectorAll('.nav-link');
 
 function updateActiveNav() {
     const scrollY = window.scrollY + 120;
