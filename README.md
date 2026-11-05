@@ -18,7 +18,7 @@ npm run build
 npm run preview
 ```
 
-Los componentes están en `src/components`, los estilos en `css/style.css` y las imágenes en `public/img`. El formulario sigue utilizando Formspree y el reproductor, Spotify.
+Los componentes están en `src/components`, los estilos en `css/style.css` y las imágenes en `public/img`. El botÃ³n de contacto copia el correo y el reproductor utiliza Spotify.
 
 ## GitHub Pages
 
