@@ -17,12 +17,14 @@
       <div class="board-center"><div class="board-intro"><span>{{ en ? 'Hi, I’m Aaron.' : 'Hola, soy Aaron.' }}</span><h1 id="board-title">{{ en ? 'My corner' : 'Mi rincón' }}<br>{{ en ? 'of the internet.' : 'en internet.' }}</h1><p>{{ en ? 'Projects, ideas, and a little about me.' : 'Proyectos, ideas y un poco de mí.' }}</p></div><div class="board-portrait"><img class="portrait-monochrome" src="/img/aaron-sticker.webp" alt="Aaron Espinoza" width="434" height="525" fetchpriority="high"><img class="portrait-color" src="/img/aaron-sticker.webp" alt="" aria-hidden="true" width="434" height="525"><span>@psure</span></div><button class="board-contact" type="button" @click="copyEmail">{{ copyStatus === 'success' ? (en ? 'Email copied!' : '¡Correo copiado!') : (en ? 'Copy my email' : 'Copia mi email') }} <span aria-hidden="true">{{ copyStatus === 'success' ? '✓' : '↗' }}</span></button><span class="board-contact-note" role="status" aria-live="polite">{{ copyStatus === 'error' ? (en ? 'Could not copy: ' : 'No se pudo copiar: ') + email : (en ? 'There’s always room for a conversation.' : 'Siempre hay espacio para conversar.') }}</span></div>
       <div class="board-column board-right"><div class="board-note"><span>{{ en ? 'A little note' : 'Una pequeña nota' }}</span><p>{{ en ? 'I like turning curiosity into things you can use.' : 'Me gusta convertir curiosidad en cosas que puedas usar.' }}</p><span>— Aaron</span></div><div class="board-project-slot"><Transition name="project-fade" mode="out-in"><button v-if="visibleProjects[2]" :key="visibleProjects[2].id" class="board-project" type="button" @click="openBoardProject(visibleProjects[2])" :aria-label="`${en ? 'View images of' : 'Ver imágenes de'} ${visibleProjects[2].title}`" @mouseenter="interacting = true" @mouseleave="interacting = false" @focus="interacting = true" @blur="interacting = false"><span class="board-card-label">{{ en ? 'PROJECT' : 'PROYECTO' }}</span><img :src="visibleProjects[2].thumbnail" alt="" width="1000" height="510" decoding="async"><span class="board-card-title">{{ visibleProjects[2].title }} <span aria-hidden="true">↗</span></span><span class="board-card-detail">{{ visibleProjects[2].category }}</span></button></Transition></div></div>
     </div>
+    <MusicWidget :language="language" />
   </section></main>
   <ImageGallery :gallery="translatedGallery" :language="language" @close="closeGallery" />
 </template>
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import ImageGallery from './components/ImageGallery.vue'
+import MusicWidget from './components/MusicWidget.vue'
 import projects from './projects.js'
 const translations = {
   'Espectrómetro Web': { title: 'Web Spectrometer', category: 'DATA / BLUETOOTH', description: 'An application for graphically visualizing data from a light spectrometer via Bluetooth.' },

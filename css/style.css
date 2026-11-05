@@ -52,3 +52,11 @@
 
 /* Desvanecido secuencial y dos capas para un cambio gradual del retrato. */
 .project-fade-enter-active{transition:opacity .85s ease-in-out}.project-fade-leave-active{transition:opacity .85s ease-in-out}.board-portrait .portrait-monochrome,.board-portrait:hover .portrait-monochrome{filter:grayscale(100%)}.board-portrait .portrait-color,.board-portrait:hover .portrait-color{position:absolute;inset:0;filter:none;opacity:0;transition:opacity 1.25s ease-in-out;pointer-events:none}@media(hover:hover){.board-portrait:hover .portrait-color{opacity:1}}
+
+/* Más espacio para el tablero y una pequeña sección de música. */
+@media (min-width:701px){.nav.wrap,.board-wrap.wrap{width:calc(100% - clamp(48px,5vw,96px));max-width:none}.board-wrap{padding-bottom:20px}.board{grid-template-columns:minmax(190px,clamp(230px,17vw,300px)) minmax(300px,1fr) minmax(190px,clamp(230px,17vw,300px));min-height:max(640px,calc(100svh - 208px))}.board-intro h1{font-size:clamp(48px,4vw,72px)}.board-portrait{width:clamp(245px,18vw,310px)}}
+.music-widget{margin-top:16px;padding:0;border-top:1px solid #383838}.music-widget summary{min-height:56px;font-size:11px;gap:16px}.music-widget summary span:first-child{color:#ededeb}.music-widget summary small{font:inherit;color:#a5a5a0}.music-widget summary span:last-child{color:#deded9;white-space:nowrap}.music-widget summary:hover span:last-child{color:#fff}.music-content{max-width:560px;padding:4px 0 24px}.music-controls{gap:10px}.music-controls button:hover{border-color:#eee}.music-controls a{margin-left:auto;color:#d8d8d4;font:600 12px ui-sans-serif,system-ui,sans-serif}.music-controls a:hover{text-decoration:underline}.music-content iframe{background:#151515}@media(max-width:700px){.music-widget{margin-top:14px}.music-widget summary{font-size:10px}.music-widget summary small{display:block;padding-left:22px}.music-content{max-width:100%}}
+
+/* Mantener proporciones en pantallas anchas y tabletas. */
+@media (min-width:901px){.board-portrait{width:clamp(245px,15vw,270px)}}
+@media (min-width:701px) and (max-width:900px){.board{grid-template-columns:minmax(130px,190px) minmax(0,1fr) minmax(130px,190px);gap:14px;padding:18px}.board-portrait{width:min(190px,100%)}.board-intro h1{font-size:clamp(36px,5vw,44px)}.board-note{transform:none}}
