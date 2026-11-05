@@ -2,14 +2,14 @@
   <section id="projects" class="section projects-section">
     <div class="wrap">
       <div class="section-top">
-        <div><p class="eyebrow"><span>01</span> / PROYECTOS SELECCIONADOS</p><h2>Ideas que toman <em>forma.</em></h2></div>
-        <p class="section-intro">Una selección de trabajos donde el código se convierte en herramientas, experiencias y soluciones reales.</p>
+        <div><p class="eyebrow">HECHO POR AQUÍ</p><h2>Proyectos que quiero <em>compartir.</em></h2></div>
+        <p class="section-intro">Una selección de proyectos que he ido construyendo, probando y mejorando.</p>
       </div>
       <div class="projects-grid">
         <article v-for="(project, index) in visibleProjects" :key="project.title" class="project-card" :class="{ featured: index === 0 }">
           <button class="project-image" type="button" :aria-label="`Ver galería de ${project.title}`" @click="$emit('open-gallery', { ...project, start: 0 })">
             <img :src="project.thumbnail" :alt="`Vista previa de ${project.title}`" :loading="index < 2 ? 'eager' : 'lazy'" decoding="async" width="1000" height="510">
-            <span class="project-image-label">VER GALERÍA <span aria-hidden="true">↗</span></span>
+            <span class="project-image-label">VER IMÁGENES <span aria-hidden="true">↗</span></span>
           </button>
           <div class="project-body">
             <div class="project-meta"><span>{{ project.category }}</span><span>{{ project.year }}</span></div>
@@ -18,7 +18,7 @@
           </div>
         </article>
       </div>
-      <div class="more-projects" v-if="!showAll"><button class="text-button" type="button" @click="showAll = true">Explorar todos los proyectos <span>↗</span></button><span>+ {{ projects.length - 6 }} proyectos</span></div>
+      <div class="more-projects" v-if="!showAll"><button class="text-button" type="button" @click="showAll = true">Ver todos los proyectos <span>↗</span></button><span>+ {{ projects.length - 6 }} proyectos</span></div>
       <div class="more-projects" v-else><button class="text-button" type="button" @click="showAll = false">Ver menos <span>↑</span></button><span>{{ projects.length }} proyectos</span></div>
     </div>
   </section>

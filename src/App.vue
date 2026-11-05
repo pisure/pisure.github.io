@@ -1,48 +1,68 @@
 <template>
-  <a class="skip-link" href="#main">Saltar al contenido</a>
-  <header class="header">
-    <nav class="nav wrap" aria-label="Navegación principal">
-      <a class="brand" href="#home" aria-label="PSURE, ir al inicio"><span class="brand-mark">p<span>.</span></span><span class="brand-name">PSURE<span class="brand-slash"> / </span><small>PORTFOLIO</small></span></a>
-      <div class="nav-links" :class="{ open: menuOpen }" id="main-menu">
-        <a href="#projects" @click="menuOpen = false">Proyectos</a><a href="#about" @click="menuOpen = false">Sobre mí</a><a href="#stack" @click="menuOpen = false">Stack</a><a class="mobile-contact" href="#contact" @click="menuOpen = false">Contacto ↗</a>
+  <a class="skip-link" href="#main">{{ en ? 'Skip to content' : 'Saltar al contenido' }}</a>
+  <header class="header"><nav class="nav wrap" :aria-label="en ? 'Main navigation' : 'Navegación principal'">
+    <a class="brand" href="#home" :aria-label="en ? 'Psure, go home' : 'Psure, ir al inicio'"><span class="brand-mark">p<span>.</span></span><span class="brand-name">PSURE<span class="brand-slash"> / </span><small>{{ en ? 'MY SPACE' : 'MI ESPACIO' }}</small></span></a>
+    <div class="nav-links" :class="{ open: menuOpen }" id="main-menu"><a href="https://github.com/pisure" target="_blank" rel="noopener noreferrer" @click="menuOpen = false">GitHub ↗</a><a href="https://www.linkedin.com/in/aaron-espinoza-393856346/" target="_blank" rel="noopener noreferrer" @click="menuOpen = false">LinkedIn ↗</a><a href="https://www.instagram.com/ron.es4/" target="_blank" rel="noopener noreferrer" @click="menuOpen = false">Instagram ↗</a></div>
+    <div class="nav-actions">
+      <button class="language-button" type="button" @click="toggleLanguage" :aria-label="en ? 'Switch language to Spanish' : 'Cambiar idioma a inglés'" :title="en ? 'Cambiar a español' : 'Switch to English'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3c-2.4 2.5-3.6 5.5-3.6 9S9.6 18.5 12 21"/></svg><span>{{ en ? 'EN' : 'ES' }}</span></button>
+      <button type="button" class="menu-button" aria-controls="main-menu" :aria-expanded="menuOpen" :aria-label="en ? (menuOpen ? 'Close menu' : 'Open menu') : (menuOpen ? 'Cerrar menú' : 'Abrir menú')" @click="menuOpen = !menuOpen"><span></span><span></span></button>
+    </div>
+  </nav></header>
+  <main id="main"><section class="board-wrap wrap" id="home" aria-labelledby="board-title">
+    <div class="board-meta"><span>{{ en ? 'PSURE / A PERSONAL SPACE' : 'PSURE / UN ESPACIO PERSONAL' }}</span></div>
+    <div class="board">
+      <div class="board-column board-left">
+        <div v-for="slot in [0, 1]" :key="slot" class="board-project-slot"><Transition name="project-fade" mode="out-in"><button v-if="visibleProjects[slot]" :key="visibleProjects[slot].id" class="board-project" type="button" @click="openBoardProject(visibleProjects[slot])" :aria-label="`${en ? 'View images of' : 'Ver imágenes de'} ${visibleProjects[slot].title}`" @mouseenter="interacting = true" @mouseleave="interacting = false" @focus="interacting = true" @blur="interacting = false"><span class="board-card-label">{{ en ? 'PROJECT' : 'PROYECTO' }}</span><img :src="visibleProjects[slot].thumbnail" alt="" width="1000" height="510" decoding="async"><span class="board-card-title">{{ visibleProjects[slot].title }} <span aria-hidden="true">↗</span></span><span class="board-card-detail">{{ visibleProjects[slot].category }}</span></button></Transition></div>
       </div>
-      <div class="nav-actions"><button class="theme-button" type="button" @click="toggleTheme" :aria-label="theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'" :title="theme === 'dark' ? 'Tema claro' : 'Tema oscuro'"><svg v-if="theme === 'dark'" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg><svg v-else viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z"></path></svg></button><a class="nav-contact" href="#contact">Hablemos <span>↗</span></a><button type="button" class="menu-button" aria-controls="main-menu" :aria-expanded="menuOpen" :aria-label="menuOpen ? 'Cerrar menú' : 'Abrir menú'" @click="menuOpen = !menuOpen"><span></span><span></span></button></div>
-    </nav>
-  </header>
-  <main id="main">
-    <section class="hero wrap" id="home">
-      <div class="hero-copy">
-        <div class="availability"><span></span> DISPONIBLE PARA PROYECTOS</div>
-        <p class="hero-kicker">HOLA, SOY AARON ESPINOZA <span>/</span> @PSURE</p>
-        <h1>Hago que las<br>ideas <em>funcionen.</em><span class="hero-period">_</span></h1>
-        <p class="hero-description">Desarrollador full stack. Construyo experiencias digitales que se sienten bien y resuelven problemas de verdad.</p>
-        <div class="hero-actions"><a class="button primary" href="#projects">Ver mis proyectos <span>↗</span></a><a class="button secondary" href="#contact">Hablemos <span>→</span></a></div>
-        <div class="hero-signature"><span class="signature-line"></span><span>DISEÑO, CÓDIGO Y UN POCO DE CURIOSIDAD.</span></div>
-      </div>
-      <div class="profile-panel">
-        <div class="panel-bar"><span><i></i><i></i><i></i></span><span>about-me / profile</span><span>✳</span></div>
-        <div class="portrait"><img src="/img/foto.jpg" alt="Aaron Espinoza" width="1395" height="1395" fetchpriority="high"><div class="portrait-overlay"></div><span class="portrait-label">EL HUMANO DETRÁS<br>DEL CÓDIGO <span>↗</span></span></div>
-        <div class="profile-data"><div><span class="profile-prefix">const</span> developer = <span class="profile-accent">{</span></div><div class="code-line">name: <span>"Aaron Espinoza"</span>,</div><div class="code-line">role: <span>"Full Stack Developer"</span>,</div><div class="code-line">building: <span>"cosas útiles"</span></div><div class="profile-accent">}</div></div>
-      </div>
-      <div class="hero-index"><span>DESARROLLADOR &amp; CREADOR DIGITAL</span><span>DESLIZA PARA EXPLORAR ↓</span></div>
-    </section>
-    <div class="ticker" aria-hidden="true"><div class="ticker-inner wrap"><span>DE LA IDEA</span><span>✳</span><span>AL DISEÑO</span><span>✳</span><span>AL CÓDIGO</span><span>✳</span><span>AL MUNDO</span><span>↗</span></div></div>
-    <ProjectsSection @open-gallery="gallery = $event" />
-    <section class="section about-section" id="about"><div class="wrap about-grid"><div><p class="eyebrow"><span>02</span> / UN POCO SOBRE MÍ</p><h2>Detrás de cada<br>línea, hay una <em>idea.</em></h2><p class="about-lead">Me gusta crear cosas que funcionen tan bien como se ven.</p></div><div class="about-content"><p>Soy Aaron, desarrollador full stack, freelancer y estudiante de Ingeniería de Software. Me interesa convertir ideas en productos digitales claros, útiles y con personalidad.</p><p>He trabajado en proyectos que van desde sitios web hasta aplicaciones con backend y bases de datos. Me apasionan el código limpio, las interfaces cuidadas y seguir aprendiendo en cada proyecto.</p><div class="about-stats"><div><strong>10<span>+</span></strong><small>PROYECTOS<br>COMPLETADOS</small></div><div><strong>3<span>+</span></strong><small>AÑOS DE<br>EXPERIENCIA</small></div><div><strong>∞</strong><small>GANAS DE<br>APRENDER</small></div></div></div></div></section>
-    <section class="section stack-section" id="stack"><div class="wrap"><div class="section-top"><div><p class="eyebrow"><span>03</span> / LA CAJA DE HERRAMIENTAS</p><h2>Mi <em>stack.</em></h2></div><p class="section-intro">Las tecnologías cambian; las ganas de aprender, no. Estas son algunas de las herramientas con las que he trabajado.</p></div><div class="stack-grid"><article><span>01 / FRONTEND</span><h3>Experiencias que<br>se sienten bien.</h3><div class="stack-list"><span>JavaScript</span><span>React</span><span>Astro</span><span>HTML &amp; CSS</span><span>Tailwind</span></div></article><article><span>02 / BACKEND</span><h3>La lógica detrás<br>de cada idea.</h3><div class="stack-list"><span>Node.js</span><span>PHP</span><span>MongoDB</span><span>MySQL</span><span>C++</span></div></article><article><span>03 / HERRAMIENTAS</span><h3>Para construir<br>y colaborar.</h3><div class="stack-list"><span>GitHub</span><span>WordPress</span><span>Bootstrap</span><span>UI / UX</span></div></article></div></div></section>
-    <ContactSection />
-  </main>
-  <footer class="footer"><div class="wrap"><div class="footer-top"><a class="brand" href="#home"><span class="brand-mark">p<span>.</span></span><span class="brand-name">PSURE<span class="brand-slash"> / </span><small>PORTFOLIO</small></span></a><p>Diseñado para crear.<br>Construido con intención.</p><div class="social-links"><a href="https://github.com/pisure" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/aaron-espinoza-393856346/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/ron.es4/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://discord.com/users/pisuree" target="_blank" rel="noopener noreferrer">Discord ↗</a></div></div><MusicWidget /><div class="footer-bottom"><span>© {{ year }} AARON ESPINOZA / PSURE</span><span>HECHO CON CÓDIGO &amp; CURIOSIDAD ✳</span><a href="#home">VOLVER ARRIBA ↑</a></div></div></footer>
-  <ImageGallery :gallery="gallery" @close="gallery = null" />
+      <div class="board-center"><div class="board-intro"><span>{{ en ? 'Hi, I’m Aaron.' : 'Hola, soy Aaron.' }}</span><h1 id="board-title">{{ en ? 'My corner' : 'Mi rincón' }}<br>{{ en ? 'of the internet.' : 'en internet.' }}</h1><p>{{ en ? 'Projects, ideas, and a little about me.' : 'Proyectos, ideas y un poco de mí.' }}</p></div><div class="board-portrait"><img class="portrait-monochrome" src="/img/aaron-sticker.webp" alt="Aaron Espinoza" width="434" height="525" fetchpriority="high"><img class="portrait-color" src="/img/aaron-sticker.webp" alt="" aria-hidden="true" width="434" height="525"><span>@psure</span></div><button class="board-contact" type="button" @click="copyEmail">{{ copyStatus === 'success' ? (en ? 'Email copied!' : '¡Correo copiado!') : (en ? 'Copy my email' : 'Copia mi email') }} <span aria-hidden="true">{{ copyStatus === 'success' ? '✓' : '↗' }}</span></button><span class="board-contact-note" role="status" aria-live="polite">{{ copyStatus === 'error' ? (en ? 'Could not copy: ' : 'No se pudo copiar: ') + email : (en ? 'There’s always room for a conversation.' : 'Siempre hay espacio para conversar.') }}</span></div>
+      <div class="board-column board-right"><div class="board-note"><span>{{ en ? 'A little note' : 'Una pequeña nota' }}</span><p>{{ en ? 'I like turning curiosity into things you can use.' : 'Me gusta convertir curiosidad en cosas que puedas usar.' }}</p><span>— Aaron</span></div><div class="board-project-slot"><Transition name="project-fade" mode="out-in"><button v-if="visibleProjects[2]" :key="visibleProjects[2].id" class="board-project" type="button" @click="openBoardProject(visibleProjects[2])" :aria-label="`${en ? 'View images of' : 'Ver imágenes de'} ${visibleProjects[2].title}`" @mouseenter="interacting = true" @mouseleave="interacting = false" @focus="interacting = true" @blur="interacting = false"><span class="board-card-label">{{ en ? 'PROJECT' : 'PROYECTO' }}</span><img :src="visibleProjects[2].thumbnail" alt="" width="1000" height="510" decoding="async"><span class="board-card-title">{{ visibleProjects[2].title }} <span aria-hidden="true">↗</span></span><span class="board-card-detail">{{ visibleProjects[2].category }}</span></button></Transition></div></div>
+    </div>
+  </section></main>
+  <ImageGallery :gallery="translatedGallery" :language="language" @close="closeGallery" />
 </template>
 <script setup>
-import { ref, onMounted } from 'vue'
-import ProjectsSection from './components/ProjectsSection.vue'
-import ContactSection from './components/ContactSection.vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import ImageGallery from './components/ImageGallery.vue'
-import MusicWidget from './components/MusicWidget.vue'
-const theme = ref('dark'), menuOpen = ref(false), gallery = ref(null), year = new Date().getFullYear()
-function applyTheme(value) { theme.value = value; document.documentElement.dataset.theme = value; try { localStorage.setItem('psure-theme', value) } catch {} }
-function toggleTheme() { applyTheme(theme.value === 'dark' ? 'light' : 'dark') }
-onMounted(() => { let saved; try { saved = localStorage.getItem('psure-theme') } catch {} applyTheme(saved === 'dark' || saved === 'light' ? saved : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') })
+import projects from './projects.js'
+const translations = {
+  'Espectrómetro Web': { title: 'Web Spectrometer', category: 'DATA / BLUETOOTH', description: 'An application for graphically visualizing data from a light spectrometer via Bluetooth.' },
+  'Jarvis': { category: 'ASSISTANT / PRODUCTIVITY', description: 'An assistant for organizing activities, managing income and expenses, and remembering events.' },
+  'Stremio (fork)': { category: 'ENTERTAINMENT / WEB', description: 'A web application in development for watching series and films across devices.' },
+  'Portfolio interactivo': { title: 'Interactive portfolio', category: 'PORTFOLIO / WEB', description: 'An interactive website with animations and a carefully designed user experience.' },
+  'BLISS': { category: 'PLATFORM / BOOKINGS', description: 'A platform for discovering and rating beauty salons, buying products, and making reservations.' }
+}
+let savedLanguage = 'es'
+try { if (localStorage.getItem('psure-language') === 'en') savedLanguage = 'en' } catch {}
+const language = ref(savedLanguage), en = computed(() => language.value === 'en')
+watch(language, value => { document.documentElement.lang = value; try { localStorage.setItem('psure-language', value) } catch {} }, { immediate: true })
+function toggleLanguage() { language.value = en.value ? 'es' : 'en' }
+function localize(project) { return { ...project, id: project.title, ...(en.value ? translations[project.title] : {}) } }
+const boardProjects = projects
+const groupCount = boardProjects.length
+const menuOpen = ref(false), gallery = ref(null), group = ref(0), interacting = ref(false)
+const visibleProjects = computed(() => Array.from({ length: Math.min(3, boardProjects.length) }, (_, i) => localize(boardProjects[(group.value * 3 + i) % boardProjects.length])))
+const translatedGallery = computed(() => gallery.value ? { ...localize(gallery.value), start: 0 } : null)
+const email = 'aaronandreespinozaflores@gmail.com'
+const copyStatus = ref('')
+let copyTimer
+async function copyEmail() {
+  let copied = false
+  try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(email); copied = true } } catch {}
+  if (!copied) {
+    const input = document.createElement('textarea')
+    input.value = email; input.setAttribute('readonly', ''); input.style.cssText = 'position:fixed;left:-9999px;top:0'
+    const previousFocus = document.activeElement
+    document.body.appendChild(input); input.select()
+    try { copied = document.execCommand('copy') } catch {}
+    input.remove(); previousFocus?.focus()
+  }
+  copyStatus.value = copied ? 'success' : 'error'
+  clearTimeout(copyTimer); copyTimer = window.setTimeout(() => { copyStatus.value = '' }, 4000)
+}
+let timer
+function scheduleRotation() { clearTimeout(timer); timer = window.setTimeout(() => { if (!gallery.value && !interacting.value && document.visibilityState === 'visible') group.value = (group.value + 1) % groupCount; scheduleRotation() }, 20000) }
+function openBoardProject(project) { gallery.value = boardProjects.find(item => item.title === project.id) }
+function closeGallery() { gallery.value = null; scheduleRotation() }
+onMounted(scheduleRotation)
+onUnmounted(() => { clearTimeout(timer); clearTimeout(copyTimer) })
 </script>
