@@ -60,3 +60,30 @@
 /* Mantener proporciones en pantallas anchas y tabletas. */
 @media (min-width:901px){.board-portrait{width:clamp(245px,15vw,270px)}}
 @media (min-width:701px) and (max-width:900px){.board{grid-template-columns:minmax(130px,190px) minmax(0,1fr) minmax(130px,190px);gap:14px;padding:18px}.board-portrait{width:min(190px,100%)}.board-intro h1{font-size:clamp(36px,5vw,44px)}.board-note{transform:none}}
+
+/* Isla de música: reproductor real de Spotify, sin reproducción automática. */
+.nav{position:relative}.music-island{position:absolute;z-index:30;left:50%;top:50%;transform:translate(-50%,-50%);width:360px;color:#eee}.island-bar{height:52px;display:flex;align-items:center;gap:2px;padding:3px 5px 3px 13px;border:1px solid #414141;border-radius:28px;background:#171717;box-shadow:0 5px 18px #0008}.island-symbol{color:#d6d6d1;font-size:20px;line-height:1;margin-right:7px}.island-track{display:flex;flex:1;min-width:0;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;border:0;padding:4px 3px;background:transparent;line-height:1.25}.island-title{width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#f4f4ef;font-size:12px;font-weight:700}.island-subtitle{color:#b5b5b0;font-size:11px;white-space:nowrap}.island-control{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:#e8e8e3;font-size:24px;line-height:1}.island-control:hover{background:#303030}.island-popover{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:min(380px,90vw);padding:16px;border:1px solid #404040;border-radius:14px;background:#171717;box-shadow:0 14px 35px #000b}.island-popover-heading{display:flex;justify-content:space-between;gap:15px;margin-bottom:12px;color:#bdbdb8;font:600 10px ui-monospace,monospace;letter-spacing:.08em}.island-popover iframe{display:block;border:0;border-radius:8px;background:#222}.island-popover a{display:inline-block;margin-top:12px;color:#deded8;font-size:12px;font-weight:650}.island-popover a:hover{text-decoration:underline}
+@media(max-width:1200px){.nav{position:static;flex-wrap:wrap;row-gap:0;padding-top:13px}.music-island{position:relative;order:3;top:auto;left:auto;transform:none;width:min(100%,380px);margin:12px auto}.nav-links{margin-left:auto}}
+@media(max-width:700px){.nav-links{top:100%;left:0;right:0;margin:0}.music-island{width:100%}.island-bar{height:50px}.board-meta{min-height:45px}}
+
+@media(max-width:1200px){.nav::after{content:"";flex-basis:100%;height:0;order:2}}
+
+/* Isla de música: vidrio claro sobre el tablero oscuro. */
+.island-bar{background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(205,207,207,.77));border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 1px rgba(91,95,99,.2),0 8px 25px rgba(0,0,0,.36);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%)}
+.island-symbol,.island-title,.island-control{color:#17191b}.island-subtitle{color:#46494b}.island-control{transition:background .2s ease,transform .2s ease}.island-control:hover{background:rgba(255,255,255,.6)}.island-control:active{transform:scale(.94)}
+.island-popover{background:linear-gradient(145deg,rgba(250,250,250,.94),rgba(210,212,213,.9));border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 16px 40px rgba(0,0,0,.45);backdrop-filter:blur(26px) saturate(150%);-webkit-backdrop-filter:blur(26px) saturate(150%)}.island-popover-heading{color:#505355}.island-popover a{color:#212325}.island-track:focus-visible,.island-control:focus-visible,.island-popover a:focus-visible{outline:2px solid #242729;outline-offset:2px}
+
+.island-popover iframe{filter:grayscale(1)}
+
+/* Vidrio más oscuro y controles de música compactos. */
+.island-bar{background:linear-gradient(145deg,rgba(180,183,185,.91),rgba(132,137,140,.87));border-color:rgba(232,234,235,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -1px 1px rgba(48,53,57,.2),0 8px 25px rgba(0,0,0,.4)}
+.island-title,.island-control,.island-symbol{color:#121416}.island-subtitle{color:#292c2f}
+.island-control{position:relative;background:transparent!important;isolation:isolate}
+.island-control::before{content:"";position:absolute;inset:7px;border-radius:50%;background:rgba(255,255,255,0);transition:background .2s ease;z-index:-1}
+.island-control:hover::before{background:rgba(255,255,255,.36)}
+.island-control svg{width:16px;height:16px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.island-popover{background:linear-gradient(145deg,rgba(205,208,210,.96),rgba(160,165,168,.94));border-color:rgba(239,240,241,.7)}
+.spotify-host{min-height:152px}.spotify-host iframe{width:100%}
+.island-symbol.is-playing{animation:music-float 2s ease-in-out infinite}
+@keyframes music-float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-3px) rotate(5deg)}}
+@media(prefers-reduced-motion:reduce){.island-symbol.is-playing{animation:none}}
