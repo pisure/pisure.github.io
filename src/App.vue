@@ -1,49 +1,48 @@
 <template>
-  <div id="particles-js"></div>
-  <div class="edge-glow edge-glow-left"></div>
-  <div class="edge-glow edge-glow-right"></div>
-  <SiteNav :theme="theme" :active-section="activeSection" :scrolled="scrolled" @toggle-theme="toggleTheme" />
-  <main><HeroSection /><AboutSection /><ProjectsSection @open-gallery="gallery = $event" /><SkillsSection /><ContactSection /></main>
-  <SiteFooter /><MusicWidget /><ImageGallery :gallery="gallery" @close="gallery = null" />
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <header class="header">
+    <nav class="nav wrap" aria-label="Navegación principal">
+      <a class="brand" href="#home" aria-label="PSURE, ir al inicio"><span class="brand-mark">p<span>.</span></span><span class="brand-name">PSURE<span class="brand-slash"> / </span><small>PORTFOLIO</small></span></a>
+      <div class="nav-links" :class="{ open: menuOpen }" id="main-menu">
+        <a href="#projects" @click="menuOpen = false">Proyectos</a><a href="#about" @click="menuOpen = false">Sobre mí</a><a href="#stack" @click="menuOpen = false">Stack</a><a class="mobile-contact" href="#contact" @click="menuOpen = false">Contacto ↗</a>
+      </div>
+      <div class="nav-actions"><button class="theme-button" type="button" @click="toggleTheme" :aria-label="theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'" :title="theme === 'dark' ? 'Tema claro' : 'Tema oscuro'"><svg v-if="theme === 'dark'" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg><svg v-else viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z"></path></svg></button><a class="nav-contact" href="#contact">Hablemos <span>↗</span></a><button type="button" class="menu-button" aria-controls="main-menu" :aria-expanded="menuOpen" :aria-label="menuOpen ? 'Cerrar menú' : 'Abrir menú'" @click="menuOpen = !menuOpen"><span></span><span></span></button></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="home">
+      <div class="hero-copy">
+        <div class="availability"><span></span> DISPONIBLE PARA PROYECTOS</div>
+        <p class="hero-kicker">HOLA, SOY AARON ESPINOZA <span>/</span> @PSURE</p>
+        <h1>Hago que las<br>ideas <em>funcionen.</em><span class="hero-period">_</span></h1>
+        <p class="hero-description">Desarrollador full stack. Construyo experiencias digitales que se sienten bien y resuelven problemas de verdad.</p>
+        <div class="hero-actions"><a class="button primary" href="#projects">Ver mis proyectos <span>↗</span></a><a class="button secondary" href="#contact">Hablemos <span>→</span></a></div>
+        <div class="hero-signature"><span class="signature-line"></span><span>DISEÑO, CÓDIGO Y UN POCO DE CURIOSIDAD.</span></div>
+      </div>
+      <div class="profile-panel">
+        <div class="panel-bar"><span><i></i><i></i><i></i></span><span>about-me / profile</span><span>✳</span></div>
+        <div class="portrait"><img src="/img/foto.jpg" alt="Aaron Espinoza" width="1395" height="1395" fetchpriority="high"><div class="portrait-overlay"></div><span class="portrait-label">EL HUMANO DETRÁS<br>DEL CÓDIGO <span>↗</span></span></div>
+        <div class="profile-data"><div><span class="profile-prefix">const</span> developer = <span class="profile-accent">{</span></div><div class="code-line">name: <span>"Aaron Espinoza"</span>,</div><div class="code-line">role: <span>"Full Stack Developer"</span>,</div><div class="code-line">building: <span>"cosas útiles"</span></div><div class="profile-accent">}</div></div>
+      </div>
+      <div class="hero-index"><span>DESARROLLADOR &amp; CREADOR DIGITAL</span><span>DESLIZA PARA EXPLORAR ↓</span></div>
+    </section>
+    <div class="ticker" aria-hidden="true"><div class="ticker-inner wrap"><span>DE LA IDEA</span><span>✳</span><span>AL DISEÑO</span><span>✳</span><span>AL CÓDIGO</span><span>✳</span><span>AL MUNDO</span><span>↗</span></div></div>
+    <ProjectsSection @open-gallery="gallery = $event" />
+    <section class="section about-section" id="about"><div class="wrap about-grid"><div><p class="eyebrow"><span>02</span> / UN POCO SOBRE MÍ</p><h2>Detrás de cada<br>línea, hay una <em>idea.</em></h2><p class="about-lead">Me gusta crear cosas que funcionen tan bien como se ven.</p></div><div class="about-content"><p>Soy Aaron, desarrollador full stack, freelancer y estudiante de Ingeniería de Software. Me interesa convertir ideas en productos digitales claros, útiles y con personalidad.</p><p>He trabajado en proyectos que van desde sitios web hasta aplicaciones con backend y bases de datos. Me apasionan el código limpio, las interfaces cuidadas y seguir aprendiendo en cada proyecto.</p><div class="about-stats"><div><strong>10<span>+</span></strong><small>PROYECTOS<br>COMPLETADOS</small></div><div><strong>3<span>+</span></strong><small>AÑOS DE<br>EXPERIENCIA</small></div><div><strong>∞</strong><small>GANAS DE<br>APRENDER</small></div></div></div></div></section>
+    <section class="section stack-section" id="stack"><div class="wrap"><div class="section-top"><div><p class="eyebrow"><span>03</span> / LA CAJA DE HERRAMIENTAS</p><h2>Mi <em>stack.</em></h2></div><p class="section-intro">Las tecnologías cambian; las ganas de aprender, no. Estas son algunas de las herramientas con las que he trabajado.</p></div><div class="stack-grid"><article><span>01 / FRONTEND</span><h3>Experiencias que<br>se sienten bien.</h3><div class="stack-list"><span>JavaScript</span><span>React</span><span>Astro</span><span>HTML &amp; CSS</span><span>Tailwind</span></div></article><article><span>02 / BACKEND</span><h3>La lógica detrás<br>de cada idea.</h3><div class="stack-list"><span>Node.js</span><span>PHP</span><span>MongoDB</span><span>MySQL</span><span>C++</span></div></article><article><span>03 / HERRAMIENTAS</span><h3>Para construir<br>y colaborar.</h3><div class="stack-list"><span>GitHub</span><span>WordPress</span><span>Bootstrap</span><span>UI / UX</span></div></article></div></div></section>
+    <ContactSection />
+  </main>
+  <footer class="footer"><div class="wrap"><div class="footer-top"><a class="brand" href="#home"><span class="brand-mark">p<span>.</span></span><span class="brand-name">PSURE<span class="brand-slash"> / </span><small>PORTFOLIO</small></span></a><p>Diseñado para crear.<br>Construido con intención.</p><div class="social-links"><a href="https://github.com/pisure" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/aaron-espinoza-393856346/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/ron.es4/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://discord.com/users/pisuree" target="_blank" rel="noopener noreferrer">Discord ↗</a></div></div><MusicWidget /><div class="footer-bottom"><span>© {{ year }} AARON ESPINOZA / PSURE</span><span>HECHO CON CÓDIGO &amp; CURIOSIDAD ✳</span><a href="#home">VOLVER ARRIBA ↑</a></div></div></footer>
+  <ImageGallery :gallery="gallery" @close="gallery = null" />
 </template>
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import SiteNav from './components/SiteNav.vue'
-import HeroSection from './components/HeroSection.vue'
-import AboutSection from './components/AboutSection.vue'
+import { ref, onMounted } from 'vue'
 import ProjectsSection from './components/ProjectsSection.vue'
-import SkillsSection from './components/SkillsSection.vue'
 import ContactSection from './components/ContactSection.vue'
-import SiteFooter from './components/SiteFooter.vue'
-import MusicWidget from './components/MusicWidget.vue'
 import ImageGallery from './components/ImageGallery.vue'
-const theme = ref('dark'), activeSection = ref('hero'), scrolled = ref(false), gallery = ref(null)
-let observer, titleTimer, titleIntervals = [], revealTimers = []
-function applyTheme(value) { theme.value = value; if (value === 'light') document.documentElement.setAttribute('data-theme', 'light'); else document.documentElement.removeAttribute('data-theme'); try { localStorage.setItem('psure-theme', value) } catch {} }
+import MusicWidget from './components/MusicWidget.vue'
+const theme = ref('dark'), menuOpen = ref(false), gallery = ref(null), year = new Date().getFullYear()
+function applyTheme(value) { theme.value = value; document.documentElement.dataset.theme = value; try { localStorage.setItem('psure-theme', value) } catch {} }
 function toggleTheme() { applyTheme(theme.value === 'dark' ? 'light' : 'dark') }
-function onScroll() {
-  scrolled.value = window.scrollY > 60
-  const position = window.scrollY + 120
-  document.querySelectorAll('section[id]').forEach(section => { if (position >= section.offsetTop && position < section.offsetTop + section.offsetHeight) activeSection.value = section.id })
-}
-function smoothAnchor(event) {
-  const anchor = event.target.closest('a[href^="#"]')
-  if (!anchor) return
-  const target = document.getElementById(anchor.getAttribute('href').slice(1))
-  if (target) { event.preventDefault(); window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 75, behavior: 'smooth' }) }
-}
-onMounted(() => {
-  let saved; try { saved = localStorage.getItem('psure-theme') } catch {}
-  applyTheme(saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
-  window.addEventListener('scroll', onScroll, { passive: true }); document.addEventListener('click', smoothAnchor); onScroll()
-  const elements = document.querySelectorAll('.reveal, .project-card, .tech-item')
-  if ('IntersectionObserver' in window) {
-    observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { const delay = Number(entry.target.dataset.delay || 0); revealTimers.push(setTimeout(() => entry.target.classList.add('visible'), delay)); observer.unobserve(entry.target) } }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
-    elements.forEach((el, i) => { if (el.classList.contains('project-card') || el.classList.contains('tech-item')) el.dataset.delay = String((i % 6) * 80); observer.observe(el) })
-  } else elements.forEach(el => el.classList.add('visible'))
-  if (window.particlesJS) window.particlesJS('particles-js', { particles: { number: { value: 55, density: { enable: true, value_area: 900 } }, color: { value: ['#8b5cf6', '#06b6d4', '#ffffff'] }, shape: { type: 'circle' }, opacity: { value: 0.35, random: true, anim: { enable: true, speed: 0.8, opacity_min: 0.05, sync: false } }, size: { value: 2.5, random: true, anim: { enable: true, speed: 3, size_min: 0.3, sync: false } }, line_linked: { enable: true, distance: 140, color: '#8b5cf6', opacity: 0.18, width: 1 }, move: { enable: true, speed: 1.4, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false, attract: { enable: false } } }, interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true }, modes: { grab: { distance: 160, line_linked: { opacity: 0.6 } }, push: { particles_nb: 3 }, repulse: { distance: 80, duration: 0.4 } } }, retina_detect: true })
-  const entries = [{ title: 'About @psure', favicon: 'img/favicon-p.svg' }, { title: 'About @Aaron', favicon: 'img/favicon-a.svg' }]; let index = 0
-  titleTimer = setInterval(() => { index = (index + 1) % entries.length; const next = entries[index]; let current = document.title; let i = 0; const erase = setInterval(() => { current = current.slice(0, -1); document.title = current || '...'; if (!current) { clearInterval(erase); const icon = document.querySelector("link[rel='icon']"); if (icon) icon.href = next.favicon; const type = setInterval(() => { document.title = next.title.slice(0, ++i); if (i === next.title.length) clearInterval(type) }, 60); titleIntervals.push(type) } }, 40); titleIntervals.push(erase) }, 4000)
-})
-onUnmounted(() => { observer?.disconnect(); revealTimers.forEach(clearTimeout); clearInterval(titleTimer); titleIntervals.forEach(clearInterval); window.removeEventListener('scroll', onScroll); document.removeEventListener('click', smoothAnchor) })
+onMounted(() => { let saved; try { saved = localStorage.getItem('psure-theme') } catch {} applyTheme(saved === 'dark' || saved === 'light' ? saved : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') })
 </script>

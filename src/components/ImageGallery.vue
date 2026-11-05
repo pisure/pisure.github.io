@@ -1,80 +1,18 @@
 <template>
-<div v-if="gallery" id="img-modal" class="img-modal open" aria-hidden="false" role="dialog" aria-modal="true">
-
-        <!-- Fondo oscuro — clic aquí para cerrar -->
-        <div class="img-modal-backdrop" @click="$emit('close')"></div>
-
-        <div class="img-modal-shell">
-            <div class="img-modal-topbar">
-                <div class="img-modal-project-badge">
-                    <i class="fas fa-images"></i>
-                    <span class="img-modal-project-name">{{ gallery.title || 'Proyecto' }}</span>
-                </div>
-                <div class="img-modal-counter">
-                    <span id="modal-current">{{ current + 1 }}</span> / <span id="modal-total">{{ gallery.images.length }}</span>
-                </div>
-                <button class="img-modal-close" @click="$emit('close')" aria-label="Cerrar">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <!-- ── Área principal donde se muestra la imagen ── -->
-            <div class="img-modal-main">
-
-                <!-- Flecha anterior -->
-                <button class="img-modal-prev" @click="move(-1)" aria-label="Anterior">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <!-- Contenedor de la imagen -->
-                <div class="img-modal-stage">
-                    <img class="img-modal-img" :src="gallery.images[current]" :alt="gallery.title || 'Imagen ampliada'">
-
-                    <!-- Gradiente abajo para que el texto se lea bien -->
-                    <div class="img-modal-stage-grad"></div>
-                </div>
-
-                <!-- Flecha siguiente -->
-                <button class="img-modal-next" @click="move(1)" aria-label="Siguiente">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-
-            <!-- ── Barra inferior con miniaturas ── -->
-            <div class="img-modal-bottom">
-
-                <!-- Miniaturas de las imágenes -->
-                <div class="img-modal-thumbs" role="navigation" aria-label="Miniaturas"><button v-for="(image, index) in gallery.images" :key="image + index" type="button" :class="{ active: current === index }" :aria-label="`Imagen ${index + 1}`" @click="current = index"><img :src="image" :alt="`Miniatura ${index + 1}`"></button></div>
-
-                <!-- Título y descripción del proyecto -->
-                <div class="img-modal-info">
-                    <h3 class="img-modal-title">{{ gallery.title }}</h3>
-                    <p class="img-modal-desc">{{ gallery.description }}</p>
-                </div>
-
-                <!-- Atajos de teclado para navegar -->
-                <div class="img-modal-hint">
-                    <kbd>←</kbd><kbd>→</kbd> navegar &nbsp;·&nbsp; <kbd>Esc</kbd> cerrar
-                </div>
-
-            </div>
-
-        </div>
-    </div>
+  <Teleport to="body"><div v-if="gallery" class="gallery-overlay" role="presentation" @click.self="$emit('close')"><div ref="dialog" class="gallery-dialog" role="dialog" aria-modal="true" aria-labelledby="gallery-title" tabindex="-1"><div class="gallery-top"><div><span class="gallery-label">GALERÍA DE PROYECTO</span><h2 id="gallery-title">{{ gallery.title }}</h2></div><button type="button" class="gallery-close" @click="$emit('close')" aria-label="Cerrar galería">×</button></div><div class="gallery-image"><img :src="gallery.images[current]" :alt="`${gallery.title}, imagen ${current + 1} de ${gallery.images.length}`"><button v-if="gallery.images.length > 1" class="gallery-nav prev" type="button" @click="move(-1)" aria-label="Imagen anterior">←</button><button v-if="gallery.images.length > 1" class="gallery-nav next" type="button" @click="move(1)" aria-label="Imagen siguiente">→</button></div><div class="gallery-footer"><p>{{ gallery.description }}</p><div><span>{{ String(current + 1).padStart(2, '0') }} / {{ String(gallery.images.length).padStart(2, '0') }}</span><span class="gallery-hint">ESC PARA CERRAR</span></div></div><div v-if="gallery.images.length > 1" class="gallery-thumbs"><button v-for="(image, index) in gallery.images" :key="image" type="button" :class="{ active: index === current }" :aria-label="`Ir a imagen ${index + 1}`" :aria-current="index === current ? 'true' : undefined" @click="current = index">{{ index + 1 }}</button></div></div></div></Teleport>
 </template>
-
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { ref, watch, nextTick, onMounted, onUnmounted } from 'vue'
 const props = defineProps({ gallery: Object })
 const emit = defineEmits(['close'])
-const current = ref(0)
-let previousOverflow = ''
-watch(() => props.gallery, (gallery, old) => {
-  if (gallery) { if (!old) previousOverflow = document.body.style.overflow; current.value = gallery.start; document.body.style.overflow = 'hidden' }
-  else if (old) document.body.style.overflow = previousOverflow
+const current = ref(0), dialog = ref(null)
+let previousOverflow = '', previousFocus = null
+watch(() => props.gallery, async (gallery, old) => {
+  if (gallery) { if (!old) { previousOverflow = document.body.style.overflow; previousFocus = document.activeElement } current.value = gallery.start || 0; document.body.style.overflow = 'hidden'; await nextTick(); dialog.value?.focus() }
+  else if (old) { document.body.style.overflow = previousOverflow; previousFocus?.focus() }
 })
 function move(step) { if (props.gallery) current.value = (current.value + step + props.gallery.images.length) % props.gallery.images.length }
-function keys(event) { if (!props.gallery) return; if (event.key === 'Escape') emit('close'); if (event.key === 'ArrowLeft') move(-1); if (event.key === 'ArrowRight') move(1) }
+function keys(event) { if (!props.gallery) return; if (event.key === 'Escape') emit('close'); else if (event.key === 'ArrowLeft') move(-1); else if (event.key === 'ArrowRight') move(1); else if (event.key === 'Tab' && dialog.value) { const nodes = [...dialog.value.querySelectorAll('button:not([disabled])')]; if (!nodes.length) return; if (event.shiftKey && (document.activeElement === nodes[0] || document.activeElement === dialog.value)) { event.preventDefault(); nodes[nodes.length - 1].focus() } else if (!event.shiftKey && document.activeElement === nodes[nodes.length - 1]) { event.preventDefault(); nodes[0].focus() } } }
 onMounted(() => document.addEventListener('keydown', keys))
-onUnmounted(() => { document.removeEventListener('keydown', keys); document.body.style.overflow = previousOverflow })
+onUnmounted(() => { document.removeEventListener('keydown', keys); if (props.gallery) document.body.style.overflow = previousOverflow })
 </script>

@@ -1,52 +1,6 @@
 <template>
-<section class="section contact-section" id="contact">
-        <div class="contact-glow"></div>
-        <div class="container">
-            <div class="contact-card reveal">
-                <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-                <h2 class="contact-heading">¿Trabajamos juntos?</h2>
-                <p class="contact-text">
-                    Tengo una idea, quiero colaborar o simplemente quiero saludar.
-                    Compléta el formulario y te respondo a la brevedad.
-                </p>
-
-                <!-- Formulario -->
-                <form class="contact-form" id="contact-form" @submit.prevent="submit" action="https://formspree.io/f/mgopppqn" method="POST">
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="contact-name">Nombre</label>
-                            <input type="text" id="contact-name" name="nombre" placeholder="Tu nombre" required
-                                autocomplete="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">Email</label>
-                            <input type="email" id="contact-email" name="email" placeholder="tu@email.com" required
-                                autocomplete="email">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-message">Mensaje</label>
-                        <textarea id="contact-message" name="mensaje" placeholder="Cuéntame sobre tu proyecto o idea..."
-                            required></textarea>
-                    </div>
-
-                    <div class="form-feedback" :class="feedbackType" id="form-feedback" role="alert">{{ feedback }}</div>
-
-                    <button type="submit" class="contact-submit" :class="{ loading }" :disabled="loading" id="contact-submit">
-                        <span class="submit-spinner"></span>
-                        <span class="submit-label">
-                            <i class="fas fa-paper-plane" style="margin-right:0.4rem"></i>
-                            Enviar mensaje
-                        </span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+  <section class="section contact-section" id="contact"><div class="wrap contact-grid"><div class="contact-copy"><p class="eyebrow"><span>04</span> / SIGUIENTE PASO</p><h2>¿Tienes una idea?<br><em>Hagámosla realidad.</em></h2><p>Si tienes un proyecto en mente, quieres colaborar o simplemente saludar, este es un buen lugar para empezar.</p><div class="contact-note"><span>→</span><div>CUÉNTAME QUÉ ESTÁS CONSTRUYENDO<br><strong>Yo pongo el café y el código.</strong></div></div></div><form class="contact-form" @submit.prevent="submit" action="https://formspree.io/f/mgopppqn" method="POST"><div class="form-heading"><span>MENSAJE NUEVO</span><span>✳</span></div><div class="form-row"><label>Tu nombre<input name="nombre" type="text" autocomplete="name" placeholder="¿Cómo te llamas?" required></label><label>Tu correo<input name="email" type="email" autocomplete="email" placeholder="hola@ejemplo.com" required></label></div><label>Tu mensaje<textarea name="mensaje" rows="4" placeholder="Cuéntame un poco sobre tu idea..." required></textarea></label><p class="form-feedback" :class="feedbackType" role="status" aria-live="polite">{{ feedback }}</p><button class="button primary submit-button" type="submit" :disabled="loading">{{ loading ? 'Enviando…' : 'Enviar mensaje' }} <span>↗</span></button></form></div></section>
 </template>
-
 <script setup>
 import { ref } from 'vue'
 const loading = ref(false), feedback = ref(''), feedbackType = ref('')
@@ -56,7 +10,7 @@ async function submit(event) {
   try {
     const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
     if (response.ok) { feedbackType.value = 'success'; feedback.value = '¡Mensaje enviado! Te responderé pronto.'; form.reset() }
-    else { const result = await response.json().catch(() => ({})); feedbackType.value = 'error'; feedback.value = result.errors?.map(error => error.message).join(', ') || 'Error al enviar. Inténtalo de nuevo.' }
+    else { const result = await response.json().catch(() => ({})); feedbackType.value = 'error'; feedback.value = result.errors?.map(error => error.message).join(', ') || 'No se pudo enviar. Inténtalo de nuevo.' }
   } catch { feedbackType.value = 'error'; feedback.value = 'Sin conexión. Revisa tu internet e inténtalo de nuevo.' }
   finally { loading.value = false }
 }
