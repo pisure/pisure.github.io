@@ -2113,3 +2113,5 @@ body::after {
         height: 36px;
     }
 }
+/* Botón accesible para el menú móvil */
+.nav-hamburger { border: 0; background: transparent; }
